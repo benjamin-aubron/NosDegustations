@@ -4,7 +4,7 @@ export type Cepage = {
 }
 
 export type Data = {
-  id: number;
+  id: string;
   date?: Date;
   bu: boolean;
   image?: string;
