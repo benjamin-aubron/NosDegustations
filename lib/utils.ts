@@ -11,5 +11,11 @@ export function toPascalCase(str: string): string {
     .split(' ')
     .filter(word => word.length > 0)
     .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
-    .join(' ')
+    .join('')
+}
+
+export function toSnakeCase(str: string): string {
+  return str
+    .toLowerCase()
+    .replace(/\s+/g, '_')
 }

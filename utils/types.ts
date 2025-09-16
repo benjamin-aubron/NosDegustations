@@ -10,7 +10,6 @@ export type Data = {
   image?: string;
   domaine?: string;
   appelation: string;
-  terroir?: string;
   region: string;
   annee?: number;
   alcool?: number;

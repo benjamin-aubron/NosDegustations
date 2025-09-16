@@ -13,7 +13,7 @@ export default function Comment({name}: {name: string}) {
           </Avatar>
           <h2 className="text-xl">{name === "clem" ? "Clemence" : "Benji"}</h2>
         </div>
-        <Score note={3}/>
+        <Score note={3.5}/>
       </div>
       <p className="pt-4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis vel voluptas harum alias, repellat tempore est consequatur sequi obcaecati ad, ipsam, eveniet fugiat quod! Sit, atque?</p>
 
