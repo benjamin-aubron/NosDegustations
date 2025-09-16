@@ -1,10 +1,12 @@
 import Header from "@/components/Header";
 import Tested from "@/components/Tested";
+import NextTasting from "@/components/NextTasting";
 
 export default function Home() {
   return (
-    <main className="mx-auto max-w-screen-lg border-1 rounded-2xl border-red-500 p-4">
+    <main>
       <Header/>
+      <NextTasting/>
       <Tested/>
     </main>
   );
