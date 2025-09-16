@@ -2,6 +2,7 @@
 
 import { Pie, PieChart } from "recharts"
 import { Cepage } from "@/utils/types"
+import { WHITE_COLORS, RED_COLORS } from "@/utils/constant"
 
 import {
   ChartConfig,
@@ -10,35 +11,39 @@ import {
   ChartTooltipContent,
 } from "@/components/ui/chart"
 
-const chartConfig = {
-  Jacquère: {
-    label: "Jacquère",
-    color: "var(--chart-1)", // ← Même couleur
-  },
-  Jacquère2: {
-    label: "Jacquère2", 
-    color: "#124536", // ← Couleur différente
-  },
-} satisfies ChartConfig
 
-export default function ChartPieDonut({ chartData }: { chartData: Cepage[] }) {
+export default function ChartPieDonut({ chartData, type }: { chartData: Cepage[], type: string }) {
+
+  const dataWithColors = type === "vin rouge" ? chartData.map((item, index) => ({
+    ...item,
+    fill: RED_COLORS[index],
+  })) : chartData.map((item, index) => ({
+    ...item,
+    fill: WHITE_COLORS[index],
+  }));
+
+  const chartConfig = {
+    cepage: {
+      label: "cepage",
+    },
+  } satisfies ChartConfig
+
   return (
     <ChartContainer
       config={chartConfig}
-      className="mx-auto aspect-square max-h-[250px]"
+      className="mx-auto aspect-square max-h-[150px]"
     >
-      <PieChart>
+      <PieChart className="border">
         <ChartTooltip
           cursor={false}
           content={<ChartTooltipContent hideLabel />}
         />
         <Pie
-          data={chartData}
+          data={dataWithColors}
           dataKey="pourcentage"
           nameKey="cepage"
-          innerRadius={60}
+          innerRadius={35}
           isAnimationActive={false}
-          
         />
       </PieChart>
     </ChartContainer>
