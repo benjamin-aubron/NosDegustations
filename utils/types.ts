@@ -1,3 +1,8 @@
+export type Cepage = {
+  cepage: string;
+  pourcentage: number;
+}
+
 export type Data = {
   id: number;
   date?: Date;
@@ -9,7 +14,7 @@ export type Data = {
   region: string;
   annee?: number;
   alcool?: number;
-  cepage?: object
+  cepages?: Cepage[]
   noteClem?: number;
   noteBen?: number;
   commentClem?: string;
