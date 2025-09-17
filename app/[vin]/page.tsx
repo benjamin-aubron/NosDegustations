@@ -3,6 +3,8 @@ import PieChart from "@/components/PieChart"
 import { Cepage } from "@/utils/types"
 import Comment from "@/components/Comment"
 import { toPascalCase } from "@/lib/utils"
+import Link from "next/link"
+import { ArrowLeft } from "lucide-react"
 
 export default async function Page({ params }: { params: Promise<{ vin: string }> }) {
   const { vin } = await params
@@ -14,6 +16,7 @@ export default async function Page({ params }: { params: Promise<{ vin: string }
     <div className="space-y-4">
       <div className="grid grid-cols-2 gap-4">
         <div className="p-4">
+          <Link href={`/`} className="flex items-center gap-1 text-lg hover:bg-neutral-200 rounded-xl w-fit pl-2 pr-3 py-2 mb-8"> <ArrowLeft className="w-5 h-5" /> Retour</Link>
           <h1 className="text-4xl font-medium">{selectedWine?.appelation}</h1>
           <div className="pt-4">
             <div className="text-neutral-800 font-medium text-lg">{selectedWine?.region}</div>
