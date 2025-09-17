@@ -1,5 +1,4 @@
 import { PrismaClient } from "@prisma/client"
-import addCommentToDB from "./addComment"
 
 const prisma = new PrismaClient()
 
