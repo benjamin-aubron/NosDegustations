@@ -12,7 +12,7 @@ export const data: Data[] = [
     region: "Pays de la Loire",
     annee: 2021,
     alcool: 13,
-    cepages: [{ cepage: "Cabernet France", pourcentage: 90 }, { cepage: "Carbernet Sauvignon", pourcentage: 10 }],
+    cepages: [{ cepage: "Cabernet Franc", pourcentage: 90 }, { cepage: "Carbernet Sauvignon", pourcentage: 10 }],
     noteClem: 5,
     noteBen: 4,
     commentClem: "Bonne qualité de vin, goût bien frais, bonne éclaircie, très bonne bouteille, bonne goût, très bon goût",

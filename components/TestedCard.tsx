@@ -8,15 +8,15 @@ import {
 import { Data } from "@/utils/types";
 import Link from "next/link";
 
-type TestedCardProps = Pick<Data, "appelation" | "terroir" | "alcool" | "region" | "annee" | "domaine">
+type TestedCardProps = Pick<Data, "id" | "appelation" | "alcool" | "region" | "annee" | "domaine">
 
-export default function TestedCard({ appelation, terroir, alcool, region, annee, domaine }: TestedCardProps) {
+export default function TestedCard({id, appelation, alcool, region, annee, domaine }: TestedCardProps) {
   return (
-    <Link href={`/${appelation}`}>
+    <Link href={`/${id}`}>
       <Card className="my-2">
         <CardHeader>
           <CardTitle>{appelation}</CardTitle>
-          <CardDescription>{region}{terroir === "" ? " - " : ` - ${terroir} - `}{domaine}</CardDescription>
+          <CardDescription>{region} - {domaine}</CardDescription>
           <CardAction className="flex flex-col items-end text-sm text-neutral-600 space-y-1">
             <p>{annee}</p>
             <p>{alcool}°</p>

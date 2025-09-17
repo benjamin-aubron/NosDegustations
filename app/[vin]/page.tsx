@@ -7,7 +7,7 @@ import { toPascalCase } from "@/lib/utils"
 export default async function Page({ params }: { params: Promise<{ vin: string }> }) {
   const { vin } = await params
 
-  const selectedWine = data.find((d) => d.appelation === vin)
+  const selectedWine = data.find((d) => d.id === vin)
   const cepages: Cepage[] = selectedWine?.cepages ?? []
 
   return (
@@ -45,7 +45,7 @@ export default async function Page({ params }: { params: Promise<{ vin: string }
             <ul className="list-disc pl-5 pt-4">
               {selectedWine?.cepages?.map((cepage) => (
                 <li key={cepage.cepage}>
-                  <div className="flex w-[140px] justify-between">
+                  <div className="flex max-w-[200px] justify-between">
                     <span>{cepage.cepage}</span>
                     <span>{cepage.pourcentage}%</span>
                   </div>
