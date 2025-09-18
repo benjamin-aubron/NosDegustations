@@ -23,9 +23,10 @@ model vin {
   id           String   @id @default(cuid())
   tasted       Boolean
   appelation   String
+  region       String
+  type         String
   tastingDate  DateTime?
   domain       String?
-  region       String
   year         String?
   alcohol      String?
   photo        String?
