@@ -39,8 +39,6 @@ export default async function page() {
     revalidatePath('/prochaines-degustations')
   }
 
-
-
   return (
     <div>
       <Link href={`/`} className="flex items-center gap-1 text-lg hover:bg-neutral-200 rounded-lg w-fit pl-2 pr-3 py-2 mb-4"> <ArrowLeft className="w-5 h-5" /> Retour</Link>
@@ -60,7 +58,7 @@ export default async function page() {
       <div className="mt-4">
         <h2 className="my-2 font-medium text-lg">Liste des dégustations</h2>
         {data.map((d) => (
-          <NextTastingCard key={d.id} appelation={d.appelation} region={d.region} />
+          <NextTastingCard key={d.id} id={d.id} appelation={d.appelation} region={d.region} />
         ))}
       </div>
     </div>

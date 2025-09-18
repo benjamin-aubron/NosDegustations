@@ -29,7 +29,7 @@ export default async function NextTasting() {
         </Link>
       </div>
       {data.map((d) => (
-        <ToBeTestedCard key={d.id} appelation={d.appelation} region={d.region} />
+        <ToBeTestedCard key={d.id} id={d.id} appelation={d.appelation} region={d.region} />
       ))}
     </div>
   )
