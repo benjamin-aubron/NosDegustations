@@ -18,3 +18,21 @@ model comment {
   comment   String
   createdAt DateTime @default(now())
 }
+
+model vin {
+  id           String   @id @default(cuid())
+  tasted       Boolean
+  appelation   String
+  tastingDate  DateTime?
+  domain       String?
+  region       String
+  year         String?
+  alcohol      String?
+  photo        String?
+  cepage       Json?
+  noteClem     Int?
+  commentClem  String?
+  noteBenji    Int?
+  commentBenji String?
+  createdAt    DateTime @default(now())
+}
