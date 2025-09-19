@@ -1,5 +1,4 @@
 import ToBeTestedCard from "./NextTastingCard"
-import { data } from "@/db/data"
 import { PencilLine } from "lucide-react"
 import Link from "next/link"
 import { PrismaClient } from "@prisma/client"
