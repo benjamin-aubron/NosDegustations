@@ -13,8 +13,8 @@ type TestedCardProps = Pick<Data, "id" | "appelation" | "alcool" | "region" | "a
 export default function TestedCard({id, appelation, alcool, region, annee, domaine }: TestedCardProps) {
   return (
     <Link href={`/${id}`}>
-      <Card className="my-2">
-        <CardHeader>
+      <Card className="my-2 p-4">
+        <CardHeader className="p-0">
           <CardTitle>{appelation}</CardTitle>
           <CardDescription>{region} - {domaine}</CardDescription>
           <CardAction className="flex flex-col items-end text-sm text-neutral-600 space-y-1">

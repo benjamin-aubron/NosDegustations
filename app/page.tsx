@@ -6,7 +6,7 @@ export default function Home() {
   return (
     <main>
       <Header/>
-      <NextTasting/>
+      {/* <NextTasting/> */}
       <Tested/>
     </main>
   );

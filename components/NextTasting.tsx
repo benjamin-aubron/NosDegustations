@@ -27,7 +27,7 @@ export default async function NextTasting() {
           <PencilLine className="w-6 h-8 text-neutral-500" />
         </Link>
       </div>
-      {data.map((d) => (
+      {data?.map((d) => (
         <ToBeTestedCard key={d.id} id={d.id} appelation={d.appelation} region={d.region} />
       ))}
     </div>
