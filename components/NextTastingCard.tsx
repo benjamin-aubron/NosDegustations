@@ -9,7 +9,7 @@ import deleteNextTasting from "@/app/prochaines-degustations/deleteTasting";
 
 type NextTastingCardProps = Pick<Data, "id" | "appelation" | "region">
 
-export default function NextTastingCard({ id, appelation, region, onClick }: NextTastingCardProps & { onClick?: () => void }) {
+export default function NextTastingCard({ id, appelation, region, onClick, onDelete }: NextTastingCardProps & { onClick?: () => void, onDelete?: () => void }) {
 
   const pathname = usePathname()
 
@@ -23,7 +23,7 @@ export default function NextTastingCard({ id, appelation, region, onClick }: Nex
           </div>
         </div>
       </Card>
-      <div onClick={() => { deleteNextTasting(id) }} className={`${pathname === "/" ? "hidden" : "flex"} flex-col cursor-pointer justify-center items-end text-sm text-neutral-600 bg-red-50 hover:bg-red-200 p-2  rounded-sm group absolute top-1/2 -translate-y-1/2 right-4`}>
+      <div onClick={async () => { await deleteNextTasting(id); onDelete?.(); }} className={`${pathname === "/" ? "hidden" : "flex"} flex-col cursor-pointer justify-center items-end text-sm text-neutral-600 bg-red-50 hover:bg-red-200 p-2  rounded-sm group absolute top-1/2 -translate-y-1/2 right-4`}>
         <Trash2 className="w-6 h-6 text-neutral-500 group-hover:text-red-900" />
       </div>
     </div>

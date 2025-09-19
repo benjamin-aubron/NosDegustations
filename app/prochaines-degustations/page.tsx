@@ -26,6 +26,11 @@ export default function NextTastingPage() {
     fetchData()
   }, [])
 
+  async function refreshData(){
+    const data = await fetchTasting()
+    setData(data)
+  }
+
   async function handleSubmit(formData: FormData) {
     await createTasting(formData)
     setFormData({
@@ -33,8 +38,7 @@ export default function NextTastingPage() {
       region: "",
       id: "",
     })
-    const refreshedData = await fetchTasting()
-    setData(refreshedData)
+    refreshData()
   }
 
   return (
@@ -70,9 +74,17 @@ export default function NextTastingPage() {
       <div className="mt-4">
         <h2 className="my-2 font-medium text-lg">Liste des dégustations</h2>
         {data.map((d) => (
-          <NextTastingCard key={d.id} id={d.id} appelation={d.appelation} region={d.region} onClick={() => setFormData({ ...d })} />
+          <NextTastingCard 
+            key={d.id} 
+            id={d.id} 
+            appelation={d.appelation} 
+            region={d.region} 
+            onClick={() => setFormData({ ...d })}
+            onDelete={async () => refreshData()}
+          />
         ))}
       </div>
     </div>
   )
 }
+
