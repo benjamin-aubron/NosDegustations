@@ -6,35 +6,27 @@ import { toSnakeCase } from "@/lib/utils"
 const prisma = new PrismaClient()
 
 export default async function createTasting(formData: FormData) {
-  
-  const data = await prisma.vin.findMany({
+
+  const appelation = formData.get('appelation') as string
+  const region = formData.get('region') as string
+
+  await prisma.vin.upsert({
     where: {
+      id: toSnakeCase(appelation),
+    },
+    update: {
+      appelation,
+      region,
       tasted: false,
+      type: "vin rouge",
     },
-    select: {
-      id: true,
-      appelation: true,
-      region: true,
+    create: {
+      id: toSnakeCase(appelation),
+      appelation,
+      region,
+      tasted: false,
+      type: "vin rouge",
     },
-  }
-  )
-
-  async function addComment(formData: FormData) {
-    'use server'
-    const appelation = formData.get('appelation') as string
-    const region = formData.get('region') as string
-
-    await prisma.vin.create({
-      data: {
-        id: toSnakeCase(appelation),
-        appelation,
-        region,
-        tasted: false,
-        type: "vin rouge",
-      },
-    })
-    revalidatePath('/prochaines-degustations')
-  }
-
-
+  })
+  revalidatePath('/prochaines-degustations')
 }
