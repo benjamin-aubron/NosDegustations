@@ -26,13 +26,24 @@ export default function page() {
     fetchData()
   }, [])
 
+  async function handleSubmit(formData: FormData) {
+    await createTasting(formData)
+    setFormData({
+      appelation: "",
+      region: "",
+      id: "",
+    })
+    const refreshedData = await fetchTasting()
+    setData(refreshedData)
+  }
+
   return (
     <div>
       <Link href={`/`} className="flex items-center gap-1 text-lg hover:bg-neutral-200 rounded-lg w-fit pl-2 pr-3 py-2 mb-4"> <ArrowLeft className="w-5 h-5" /> Retour</Link>
       <h1 className="text-4xl font-medium mb-4 mt-4">Prochaines dégustations</h1>
       <h2 className="my-2 font-medium text-lg">Ajouter ou modifier une boisson</h2>
       <Card className="px-4">
-        <form action={createTasting}>
+        <form action={handleSubmit}>
           <div className="flex flex-col md:flex-row gap-4 w-full">
             <input
               type="text"
