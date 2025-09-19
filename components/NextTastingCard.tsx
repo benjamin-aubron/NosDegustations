@@ -15,7 +15,7 @@ export default function NextTastingCard({ id, appelation, region, onClick }: Nex
 
   return (
     <div className="relative"> 
-      <Card className="my-2 p-4 rounded-lg cursor-pointer" onClick={onClick}>
+      <Card className={`${pathname !== "/" && "cursor-pointer"} not-last:my-2 p-4 rounded-lg`} onClick={onClick}>
         <div className="flex justify-between items-center">
           <div className="">
             <div className="text-base font-semibold">{appelation}</div>
@@ -23,7 +23,7 @@ export default function NextTastingCard({ id, appelation, region, onClick }: Nex
           </div>
         </div>
       </Card>
-      <div onClick={() => { deleteNextTasting(id) }} className={`${pathname === "/" ? "hidden" : "flex"} flex-col justify-center items-end text-sm text-neutral-600 bg-red-50 hover:bg-red-200 p-2 cursor-pointer rounded-sm group absolute top-1/2 -translate-y-1/2 right-4`}>
+      <div onClick={() => { deleteNextTasting(id) }} className={`${pathname === "/" ? "hidden" : "flex"} flex-col cursor-pointer justify-center items-end text-sm text-neutral-600 bg-red-50 hover:bg-red-200 p-2  rounded-sm group absolute top-1/2 -translate-y-1/2 right-4`}>
         <Trash2 className="w-6 h-6 text-neutral-500 group-hover:text-red-900" />
       </div>
     </div>
