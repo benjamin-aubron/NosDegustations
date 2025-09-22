@@ -15,8 +15,8 @@ export type Data = {
   alcohol?: number;
   cepage?: Cepage[]
   noteClem?: number;
-  noteBen?: number;
+  noteBenji?: number;
   commentClem?: string;
-  commentBen?: string;
+  commentBenji?: string;
   type: string;
 };

@@ -34,22 +34,22 @@ const formSchema = z.object({
   commentBenji: z.string().min(2, "Min 2 caractères").or(z.literal("")).optional()
 })
 
-export default function TestedForm(defaultValues?: FormValues) {
+export default function TestedForm({DefaultValues}: {DefaultValues?: z.infer<typeof formSchema>}) {
   const router = useRouter()
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      appelation: "",
-      region: "",
-      domain: "",
-      year: "",
-      alcohol: "",
-      cepage: "",
-      noteClem: "",
-      noteBenji: "",
-      commentClem: "",
-      commentBenji: "",
+      appelation: DefaultValues?.appelation || "",
+      region: DefaultValues?.region || "",
+      domain: DefaultValues?.domain || "",
+      year: DefaultValues?.year || "",
+      alcohol: DefaultValues?.alcohol || "",
+      cepage: DefaultValues?.cepage || "",
+      noteClem: DefaultValues?.noteClem || "",
+      noteBenji: DefaultValues?.noteBenji || "",
+      commentClem: DefaultValues?.commentClem || "",
+      commentBenji: DefaultValues?.commentBenji || "",
     },
   })
 
