@@ -4,18 +4,31 @@ import { toSnakeCase } from "@/lib/utils"
 
 const prisma = new PrismaClient()
 
-export default async function createTested(formData: FormData) {
+type FormValues = {
+  appelation: string
+  region: string
+  domain?: string
+  year?: string
+  alcohol?: string
+  cepage?: string
+  noteClem?: string
+  commentClem?: string
+  noteBenji?: string
+  commentBenji?: string
+}
 
-  const appelation = formData.get('appelation') as string
-  const region = formData.get('region') as string
-  const domain = formData.get('domain') as string
-  const year = parseInt(formData.get('year') as string)
-  const alcohol = parseFloat(formData.get('alcohol') as string)
-  const cepage = formData.get('cepage') as string
-  const noteClem = parseInt(formData.get('noteClem') as string)
-  const commentClem = formData.get('commentClem') as string
-  const noteBenji = parseFloat(formData.get('noteBenji') as string)
-  const commentBenji = formData.get('commentBenji') as string
+export default async function createTested(data: FormValues) {
+
+  const appelation = data.appelation
+  const region = data.region
+  const domain = data.domain || null
+  const year = data.year ? parseInt(data.year) : null
+  const alcohol = data.alcohol ? parseFloat(data.alcohol) : null
+  const cepage = data.cepage || ""
+  const noteClem = data.noteClem ? parseFloat(data.noteClem) : null
+  const commentClem = data.commentClem || null
+  const noteBenji = data.noteBenji ? parseFloat(data.noteBenji) : null
+  const commentBenji = data.commentBenji || null
 
 
   await prisma.vin.upsert({
@@ -33,14 +46,14 @@ export default async function createTested(formData: FormData) {
       commentClem,
       noteBenji,
       commentBenji,
-      tasted: false,
+      tasted: true,
       type: "vin rouge",
     },
     create: {
       id: toSnakeCase(appelation),
       appelation,
       region,
-      tasted: false,
+      tasted: true,
       type: "vin rouge",
       domain,
       year,

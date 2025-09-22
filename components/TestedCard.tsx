@@ -18,8 +18,8 @@ export default function TestedCard({id, appelation, alcohol, region, year }: Tes
           <CardTitle>{appelation}</CardTitle>
           <CardDescription>{region}</CardDescription>
           <CardAction className="flex flex-col items-end text-sm text-neutral-600 space-y-1">
-            <p>{year}</p>
-            <p>{alcohol}°</p>
+            <p>{year ? year : ""}</p>
+            <p>{alcohol ? `${alcohol}°` : ""}</p>
           </CardAction>
         </CardHeader>
       </Card>

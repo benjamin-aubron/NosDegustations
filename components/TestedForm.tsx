@@ -4,6 +4,7 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
 import { useRouter } from "next/navigation"
+import createTested from "@/app/ajouter-degustations/createTested"
 
 import { Button } from "@/components/ui/button"
 import {
@@ -52,7 +53,8 @@ export default function TestedForm() {
     },
   })
 
-  function onSubmit(values: z.infer<typeof formSchema>) {
+  async function onSubmit(values: z.infer<typeof formSchema>) {
+    await createTested(values)
     console.log("values", values)
     router.push("/")
   }
