@@ -1,4 +1,3 @@
-import { data } from "@/db/data"
 import PieChart from "@/components/PieChart"
 import { Cepage } from "@/utils/types"
 import Comment from "@/components/Comment"
@@ -6,15 +5,18 @@ import { toPascalCase } from "@/lib/utils"
 import Link from "next/link"
 import { ArrowLeft } from "lucide-react"
 import fetchSelected from "@/app/ajouter-degustations/fetchSelected"
+import NotFound from "@/app/not-found"
 
 export default async function Page({ params }: { params: Promise<{ vin: string }> }) {
   const { vin } = await params
 
-  const selectedWine = data.find((d) => d.id === vin)
-  const cepages: Cepage[] = selectedWine?.cepages ?? []
+  const selectedWine = await fetchSelected(vin)
+  if (!selectedWine) return <NotFound />
+  console.log(selectedWine)
 
-  const selectedWinePrisma = await fetchSelected(vin)
-  console.log(selectedWinePrisma)
+const cepages: Cepage[] = Array.isArray(selectedWine?.cepage) 
+  ? selectedWine.cepage as Cepage[]
+  : []
 
   return (
     <div className="space-y-4">
@@ -50,13 +52,13 @@ export default async function Page({ params }: { params: Promise<{ vin: string }
           <div className="">
             <h2 className="text-xl">Cépages</h2>
             <ul className="list-disc pl-5 pt-4">
-              {selectedWine?.cepages?.map((cepage) => (
-                <li key={cepage.cepage}>
+              {cepages?.length > 0 ? cepages.map((cep) => (
+                <li key={cep?.cepage}>
                   <div className="flex max-w-[200px] justify-between">
-                    <span>{cepage.cepage}</span>
-                    <span>{cepage.pourcentage}%</span>
+                    <span>{cep?.cepage}</span>
+                    <span>{cep?.pourcentage}%</span>
                   </div>
-                </li>))}
+                </li>)) : <li>Aucun cépage</li>}
             </ul>
           </div>
           <div>
@@ -64,8 +66,8 @@ export default async function Page({ params }: { params: Promise<{ vin: string }
           </div>
         </div>
       </div>
-      <Comment name="clem" />
-      <Comment name="benji" />
+      <Comment name="clem" content={selectedWine?.commentClem ?? ""} note={selectedWine?.noteClem ?? undefined} />
+      <Comment name="benji" content={selectedWine?.commentBenji ?? ""} note={selectedWine?.noteBenji ?? undefined} />
     </div>
   )
 }

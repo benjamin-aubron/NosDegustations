@@ -13,7 +13,7 @@ export type Data = {
   region: string;
   year?: number;
   alcohol?: number;
-  cepages?: Cepage[]
+  cepage?: Cepage[]
   noteClem?: number;
   noteBen?: number;
   commentClem?: string;

@@ -2,7 +2,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import Score from "@/components/Score"
 
 
-export default function Comment({name}: {name: string}) {
+export default function Comment({name, content, note}: {name: string, content: string, note: number | undefined}) {
   return (
     <div className="bg-neutral-200 rounded-2xl p-4">
       <div className="flex items-center justify-between">
@@ -13,9 +13,9 @@ export default function Comment({name}: {name: string}) {
           </Avatar>
           <h2 className="text-xl">{name === "clem" ? "Clemence" : "Benji"}</h2>
         </div>
-        <Score note={3.5}/>
+        <Score note={note} />
       </div>
-      <p className="pt-4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis vel voluptas harum alias, repellat tempore est consequatur sequi obcaecati ad, ipsam, eveniet fugiat quod! Sit, atque?</p>
+      <p className="pt-4">{content}</p>
 
     </div>
   )

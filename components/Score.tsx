@@ -1,10 +1,12 @@
 import { Star } from "lucide-react"
 
-export default function Score({ note }: { note: number }) {
+export default function Score({ note }: { note: number | undefined }) {
+  if (note === undefined) return null
+
   const renderStar = (position: number) => {
-    if (note >= position) {
+    if (note/2 >= position) {
       return <Star className="text-yellow-500" size={20} fill="currentColor" />
-    } else if (note >= position - 0.5) {
+    } else if (note/2 >= position - 0.5) {
       return (
         <div className="relative">
           <Star className="text-yellow-500" size={20} fill="none" />
