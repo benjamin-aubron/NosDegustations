@@ -1,9 +1,13 @@
-import { data } from "@/db/data"
 import TestedCard from "@/components/TestedCard"
 import { Plus } from "lucide-react"
 import Link from "next/link"
+import fetchTested from "@/app/ajouter-degustations/fetchTested"
 
-export default function Tested() {
+export default async function Tested() {
+
+  const data = await fetchTested()
+  console.log(data)
+
   return (
     <div>
       <div className="flex justify-between items-end">
@@ -12,8 +16,8 @@ export default function Tested() {
           <Plus className="w-6 h-8 text-neutral-500" />
         </Link>
       </div>
-      {data.filter((d) => d.bu).map((d) => (
-        <TestedCard key={d.id} id={d.id} appelation={d.appelation} alcool={d.alcool} region={d.region} annee={d.annee} domaine={d.domaine} />
+      {data.map((d) => (
+        <TestedCard key={d.id} id={d.id} appelation={d.appelation} alcohol={Number(d.alcohol)} region={d.region} year={Number(d.year)} />
       ))}
     </div>
   )

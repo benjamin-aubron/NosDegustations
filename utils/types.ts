@@ -5,14 +5,14 @@ export type Cepage = {
 
 export type Data = {
   id: string;
-  date?: Date;
-  bu: boolean;
+  tastingDate?: Date;
+  tasted: boolean;
   image?: string;
-  domaine?: string;
+  domain?: string;
   appelation: string;
   region: string;
-  annee?: number;
-  alcool?: number;
+  year?: number;
+  alcohol?: number;
   cepages?: Cepage[]
   noteClem?: number;
   noteBen?: number;

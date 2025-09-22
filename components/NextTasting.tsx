@@ -1,23 +1,12 @@
 import ToBeTestedCard from "./NextTastingCard"
 import { PencilLine } from "lucide-react"
 import Link from "next/link"
-import { PrismaClient } from "@prisma/client"
+import fetchTasting from "@/app/prochaines-degustations/fetchTasting"
 
-const prisma = new PrismaClient()
 
 export default async function NextTasting() {
 
-    const data = await prisma.vin.findMany({
-    where: {
-      tasted: false,
-    },
-    select: {
-      id: true,
-      appelation: true,
-      region: true,
-    },
-  }
-  )
+  const data = await fetchTasting()
 
   return (
     <div>
