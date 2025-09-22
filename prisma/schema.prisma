@@ -27,8 +27,8 @@ model vin {
   type         String
   tastingDate  DateTime?
   domain       String?
-  year         String?
-  alcohol      String?
+  year         Int?
+  alcohol      Int?
   photo        String?
   cepage       Json?
   noteClem     Int?

@@ -6,7 +6,6 @@ import fetchTested from "@/app/ajouter-degustations/fetchTested"
 export default async function Tested() {
 
   const data = await fetchTested()
-  console.log(data)
 
   return (
     <div>

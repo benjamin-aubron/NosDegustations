@@ -5,12 +5,16 @@ import Comment from "@/components/Comment"
 import { toPascalCase } from "@/lib/utils"
 import Link from "next/link"
 import { ArrowLeft } from "lucide-react"
+import fetchSelected from "@/app/ajouter-degustations/fetchSelected"
 
 export default async function Page({ params }: { params: Promise<{ vin: string }> }) {
   const { vin } = await params
 
   const selectedWine = data.find((d) => d.id === vin)
   const cepages: Cepage[] = selectedWine?.cepages ?? []
+
+  const selectedWinePrisma = await fetchSelected(vin)
+  console.log(selectedWinePrisma)
 
   return (
     <div className="space-y-4">
@@ -20,7 +24,7 @@ export default async function Page({ params }: { params: Promise<{ vin: string }
           <h1 className="text-4xl font-medium">{selectedWine?.appelation}</h1>
           <div className="pt-4">
             <div className="text-neutral-800 font-medium text-lg">{selectedWine?.region}</div>
-            <div className="text-neutral-500 font-medium text-lg">{selectedWine?.domaine}</div>
+            <div className="text-neutral-500 font-medium text-lg">{selectedWine?.domain}</div>
           </div>
         </div>
         <div className="w-full h-[300px] bg-neutral-300 rounded-2xl flex flex-col justify-center items-center">
@@ -28,7 +32,7 @@ export default async function Page({ params }: { params: Promise<{ vin: string }
         </div>
       </div>
       <div className="bg-neutral-200 rounded-2xl p-4">
-        <div>Dégusté le : {selectedWine?.date?.toLocaleDateString('fr-FR', {
+        <div>Dégusté le : {selectedWine?.tastingDate?.toLocaleDateString('fr-FR', {
           weekday: 'short',
           year: 'numeric',
           month: 'long',
@@ -37,8 +41,8 @@ export default async function Page({ params }: { params: Promise<{ vin: string }
         </div>
         <div className="flex justify-between">
           <p>Type : {toPascalCase(selectedWine?.type ?? "")}</p>
-          <p>Année : {selectedWine?.annee}</p>
-          <p>Alcool : {selectedWine?.alcool}°</p>
+          <p>Année : {selectedWine?.year}</p>
+          <p>Alcool : {selectedWine?.alcohol}°</p>
         </div>
       </div>
       <div className="bg-neutral-200 rounded-2xl p-4">
