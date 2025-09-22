@@ -34,7 +34,7 @@ const formSchema = z.object({
   commentBenji: z.string().min(2, "Min 2 caractères").or(z.literal("")).optional()
 })
 
-export default function TestedForm() {
+export default function TestedForm(defaultValues?: FormValues) {
   const router = useRouter()
 
   const form = useForm<z.infer<typeof formSchema>>({
