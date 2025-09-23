@@ -9,6 +9,7 @@ type StringifiedData = {
   appelation: string;
   region: string;
   domain?: string;
+  tastingDate?: string;
   year?: string;
   alcohol?: string;
   cepage?: string
@@ -24,10 +25,13 @@ export default async function Page({ params }: { params: Promise<{ vin: string }
   const selectedWine = await fetchSelected(vin)
   if (!selectedWine) return <NotFound />
 
+  console.log(selectedWine)
+
   const formattedSelectedWine: StringifiedData = {
     appelation: selectedWine.appelation,
     region: selectedWine.region,
     domain: selectedWine.domain as string,
+    tastingDate: selectedWine.tastingDate ? selectedWine.tastingDate.toISOString().split('T')[0] : "",
     year: String(selectedWine.year),
     alcohol: String(selectedWine.alcohol),
     cepage: selectedWine.cepage as string,

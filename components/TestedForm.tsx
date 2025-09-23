@@ -5,6 +5,7 @@ import { useForm } from "react-hook-form"
 import { z } from "zod"
 import { useRouter } from "next/navigation"
 import createTested from "@/app/ajouter-degustations/createTested"
+import CepageForm from "./CepageForm"
 
 import { Button } from "@/components/ui/button"
 import {
@@ -25,6 +26,7 @@ const formSchema = z.object({
     message: "La région doit contenir au moins 2 caractères",
   }),
   domain: z.string().min(2, "Min 2 caractères").or(z.literal("")).optional(),
+  tastingDate: z.string().min(1, "Date requise").or(z.literal("")).optional(),
   year: z.string().min(4, "Min 4 caractères").or(z.literal("")).optional(),
   alcohol: z.string().min(2, "Min 2 caractères").or(z.literal("")).optional(),
   cepage: z.string().min(2, "Min 2 caractères").or(z.literal("")).optional(),
@@ -34,7 +36,7 @@ const formSchema = z.object({
   commentBenji: z.string().min(2, "Min 2 caractères").or(z.literal("")).optional()
 })
 
-export default function TestedForm({DefaultValues}: {DefaultValues?: z.infer<typeof formSchema>}) {
+export default function TestedForm({ DefaultValues }: { DefaultValues?: z.infer<typeof formSchema> }) {
   const router = useRouter()
 
   const form = useForm<z.infer<typeof formSchema>>({
@@ -43,6 +45,7 @@ export default function TestedForm({DefaultValues}: {DefaultValues?: z.infer<typ
       appelation: DefaultValues?.appelation || "",
       region: DefaultValues?.region || "",
       domain: DefaultValues?.domain || "",
+      tastingDate: DefaultValues?.tastingDate || "",
       year: DefaultValues?.year || "",
       alcohol: DefaultValues?.alcohol || "",
       cepage: DefaultValues?.cepage || "",
@@ -103,6 +106,24 @@ export default function TestedForm({DefaultValues}: {DefaultValues?: z.infer<typ
         />
         <FormField
           control={form.control}
+          name="tastingDate"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Date de la dégustation</FormLabel>
+              <FormControl>
+                <Input
+                  className="bg-white"
+                  placeholder="Date de la dégustation (ex : 15/03/2025)"
+                  type="date"
+                  {...field}
+                />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <FormField
+          control={form.control}
           name="year"
           render={({ field }) => (
             <FormItem>
@@ -113,6 +134,8 @@ export default function TestedForm({DefaultValues}: {DefaultValues?: z.infer<typ
                   placeholder="Année (ex : 2015)"
                   type="number"
                   {...field}
+                  min={1900}
+                  max={new Date().getFullYear()}
                 />
               </FormControl>
               <FormMessage />
@@ -126,25 +149,13 @@ export default function TestedForm({DefaultValues}: {DefaultValues?: z.infer<typ
             <FormItem>
               <FormLabel>Alcool (%)</FormLabel>
               <FormControl>
-                <Input className="bg-white" placeholder="Degré d’alcool (ex : 13.5)" type="number" step={0.5} {...field} />
+                <Input className="bg-white" placeholder="Degré d’alcool (ex : 13.5)" type="number" step={0.5} min={0} max={100} {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
           )}
         />
-        <FormField
-          control={form.control}
-          name="cepage"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Cépage</FormLabel>
-              <FormControl>
-                <Input className="bg-white" placeholder="Entrer les différents cépages" {...field} />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
+        <CepageForm />
         <FormField
           control={form.control}
           name="noteClem"
@@ -152,7 +163,7 @@ export default function TestedForm({DefaultValues}: {DefaultValues?: z.infer<typ
             <FormItem>
               <FormLabel>Note de Clémence</FormLabel>
               <FormControl>
-                <Input className="bg-white" placeholder="Entrer la note de Clémence (0-10)" type="number" step={0.1} {...field} />
+                <Input className="bg-white" placeholder="Entrer la note de Clémence (0-10)" type="number" {...field} min={0} max={10} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -178,7 +189,7 @@ export default function TestedForm({DefaultValues}: {DefaultValues?: z.infer<typ
             <FormItem>
               <FormLabel>Note de Benji</FormLabel>
               <FormControl>
-                <Input className="bg-white" placeholder="Entrer la note de Benji (0-10)" type="number" step={0.1} {...field} />
+                <Input className="bg-white" placeholder="Entrer la note de Benji (0-10)" type="number" {...field} min={0} max={10} />
               </FormControl>
               <FormMessage />
             </FormItem>

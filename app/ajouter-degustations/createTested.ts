@@ -8,6 +8,7 @@ type FormValues = {
   appelation: string
   region: string
   domain?: string
+  tastingDate?: string
   year?: string
   alcohol?: string
   cepage?: string
@@ -22,6 +23,7 @@ export default async function createTested(data: FormValues) {
   const appelation = data.appelation
   const region = data.region
   const domain = data.domain || null
+  const tastingDate = data.tastingDate ? new Date(data.tastingDate) : null
   const year = data.year ? parseInt(data.year) : null
   const alcohol = data.alcohol ? parseFloat(data.alcohol) : null
   const cepage = data.cepage || ""
@@ -39,6 +41,7 @@ export default async function createTested(data: FormValues) {
       appelation,
       region,
       domain,
+      tastingDate,
       year,
       alcohol,
       cepage,
@@ -56,6 +59,7 @@ export default async function createTested(data: FormValues) {
       tasted: true,
       type: "vin rouge",
       domain,
+      tastingDate,
       year,
       alcohol,
       cepage,
