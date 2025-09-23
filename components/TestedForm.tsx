@@ -197,7 +197,7 @@ export default function TestedForm({DefaultValues}: {DefaultValues?: z.infer<typ
             </FormItem>
           )}
         />
-        <Button type="submit">Submit</Button>
+        <Button type="submit" className="cursor-pointer">Submit</Button>
       </form>
     </Form>
   )

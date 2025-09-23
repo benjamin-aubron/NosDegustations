@@ -2,31 +2,53 @@
 import { PrismaClient } from "@prisma/client"
 import { revalidatePath } from "next/cache"
 import { toSnakeCase } from "@/lib/utils"
+import zod from "zod"
+
+const formSchema = zod.object({
+  appelation: zod.string().min(2, {
+    message: "L'appelation doit contenir au moins 2 caractères",
+  }),
+  region: zod.string().min(2, {
+    message: "La région doit contenir au moins 2 caractères",
+  }),
+})
 
 const prisma = new PrismaClient()
 
 export default async function createTasting(formData: FormData) {
 
-  const appelation = formData.get('appelation') as string
-  const region = formData.get('region') as string
+  const rawData = {
+    appelation: formData.get('appelation') as string,
+    region: formData.get('region') as string,
+  }
 
-  await prisma.vin.upsert({
-    where: {
-      id: toSnakeCase(appelation),
-    },
-    update: {
-      appelation,
-      region,
-      tasted: false,
-      type: "vin rouge",
-    },
-    create: {
-      id: toSnakeCase(appelation),
-      appelation,
-      region,
-      tasted: false,
-      type: "vin rouge",
-    },
-  })
-  revalidatePath('/prochaines-degustations')
+  try {
+    const validatedData = formSchema.parse(rawData)
+    const { appelation, region } = validatedData
+    
+    await prisma.vin.upsert({
+      where: {
+        id: toSnakeCase(appelation),
+      },
+      update: {
+        appelation,
+        region,
+        tasted: false,
+        type: "vin rouge",
+      },
+      create: {
+        id: toSnakeCase(appelation),
+        appelation,
+        region,
+        tasted: false,
+        type: "vin rouge",
+      },
+    })
+    
+    revalidatePath('/prochaines-degustations')
+    console.log("Tasting créé avec succès", { appelation, region })
+    
+  } catch{
+    console.log("Erreur de validation ou dans la DB -> menez l'enquête")
+  }
 }
