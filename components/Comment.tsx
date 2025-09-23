@@ -17,7 +17,6 @@ export default function Comment({name, content, note}: {name: string, content: s
         <Score note={note} />
       </div>
       <p className="pt-4">{content}</p>
-
     </div>
   )
 }

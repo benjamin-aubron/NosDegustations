@@ -28,9 +28,9 @@ export default async function Page({ params }: { params: Promise<{ vin: string }
     year: String(selectedWine.year),
     alcohol: String(selectedWine.alcohol),
     cepage: selectedWine.cepage as string,
-    noteClem: String(selectedWine.noteClem),
+    noteClem: selectedWine.noteClem ? String(selectedWine.noteClem) : "",
     commentClem: selectedWine.commentClem as string,
-    noteBenji: String(selectedWine.noteBenji),
+    noteBenji: selectedWine.noteBenji ? String(selectedWine.noteBenji) : "",
     commentBenji: selectedWine.commentBenji as string,
   }
 

@@ -28,9 +28,9 @@ const formSchema = z.object({
   year: z.string().min(4, "Min 4 caractères").or(z.literal("")).optional(),
   alcohol: z.string().min(2, "Min 2 caractères").or(z.literal("")).optional(),
   cepage: z.string().min(2, "Min 2 caractères").or(z.literal("")).optional(),
-  noteClem: z.string().max(2, "Min 2 caractères").or(z.literal("")).optional(),
+  noteClem: z.string().max(2, "Max 2 caractères").or(z.literal("")).optional(),
   commentClem: z.string().min(2, "Min 2 caractères").or(z.literal("")).optional(),
-  noteBenji: z.string().max(2, "Min 2 caractères").or(z.literal("")).optional(),
+  noteBenji: z.string().max(2, "Max 2 caractères").or(z.literal("")).optional(),
   commentBenji: z.string().min(2, "Min 2 caractères").or(z.literal("")).optional()
 })
 
