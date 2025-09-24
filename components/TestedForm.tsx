@@ -33,6 +33,10 @@ export const formSchema = z.object({
   pourcentage1: z.string().min(1, "Pourcentage requis").or(z.literal("")).optional(),
   cepage2: z.string().min(1, "Cépage requis").or(z.literal("")).optional(),
   pourcentage2: z.string().min(1, "Pourcentage requis").or(z.literal("")).optional(),
+  cepage3: z.string().min(1, "Cépage requis").or(z.literal("")).optional(),
+  pourcentage3: z.string().min(1, "Pourcentage requis").or(z.literal("")).optional(),
+  cepage4: z.string().min(1, "Cépage requis").or(z.literal("")).optional(),
+  pourcentage4: z.string().min(1, "Pourcentage requis").or(z.literal("")).optional(),
   noteClem: z.string().max(2, "Max 2 caractères").or(z.literal("")).optional(),
   commentClem: z.string().min(2, "Min 2 caractères").or(z.literal("")).optional(),
   noteBenji: z.string().max(2, "Max 2 caractères").or(z.literal("")).optional(),
@@ -55,6 +59,10 @@ export default function TestedForm({ DefaultValues }: { DefaultValues?: z.infer<
       pourcentage1: DefaultValues?.pourcentage1 || "",
       cepage2: DefaultValues?.cepage2 || "",
       pourcentage2: DefaultValues?.pourcentage2 || "",
+      cepage3: DefaultValues?.cepage3 || "",
+      pourcentage3: DefaultValues?.pourcentage3 || "",
+      cepage4: DefaultValues?.cepage4 || "",
+      pourcentage4: DefaultValues?.pourcentage4 || "",
       noteClem: DefaultValues?.noteClem || "",
       noteBenji: DefaultValues?.noteBenji || "",
       commentClem: DefaultValues?.commentClem || "",
@@ -62,7 +70,26 @@ export default function TestedForm({ DefaultValues }: { DefaultValues?: z.infer<
     },
   })
 
-  console.log(form)
+  function cepageLength() {
+    const values = form.getValues();
+    const hasCepage1 = values?.cepage1 !== "";
+    const hasCepage2 = values?.cepage2 !== "";
+    const hasCepage3 = values?.cepage3 !== "";
+    const hasCepage4 = values?.cepage4 !== "";
+    
+    switch (true) {
+      case hasCepage4:
+        return 4;
+      case hasCepage3:
+        return 3;
+      case hasCepage2:
+        return 2;
+      case hasCepage1:
+        return 1;
+      default:
+        return 1;
+    }
+  }
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
     await createTested(values)
@@ -163,7 +190,7 @@ export default function TestedForm({ DefaultValues }: { DefaultValues?: z.infer<
             </FormItem>
           )}
         />
-        <CepageForm form={form} />
+        <CepageForm form={form} cepageLength={cepageLength()} />
         <FormField
           control={form.control}
           name="noteClem"

@@ -22,26 +22,22 @@ import {
 
 const frameworks = [
   {
-    value: "merlot",
-    label: "Merlot",
+    value: "Merlot",
   },
   {
-    value: "malbec",
-    label: "Malbec",
+    value: "Malbec",
   },
   {
-    value: "gamay",
-    label: "Gamay",
+    value: "Gamay",
   },
   {
-    value: "syrah",
-    label: "Syrah",
+    value: "Syrah",
   },
   {
-    value: "grenache",
-    label: "Grenache",
+    value: "Grenache",
   },
 ]
+
 
 export default function Combobox({ value, onValueChange, placeholder = "Select cépage..." }: {
   value?: string;
@@ -60,7 +56,7 @@ export default function Combobox({ value, onValueChange, placeholder = "Select c
           className="w-full justify-between"
         >
           {value
-            ? frameworks.find((framework) => framework.value === value)?.label
+            ? frameworks.find((framework) => framework.value === value)?.value
             : placeholder}
           <ChevronsUpDownIcon className="ml-2 h-4 w-4 shrink-0 opacity-50" />
         </Button>
@@ -87,7 +83,7 @@ export default function Combobox({ value, onValueChange, placeholder = "Select c
                       value === framework.value ? "opacity-100" : "opacity-0"
                     )}
                   />
-                  {framework.label}
+                  {framework.value}
                 </CommandItem>
               ))}
             </CommandGroup>

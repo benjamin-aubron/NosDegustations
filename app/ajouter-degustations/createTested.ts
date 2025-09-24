@@ -15,6 +15,10 @@ type FormValues = {
   pourcentage1?: string
   cepage2?: string
   pourcentage2?: string
+  cepage3?: string
+  pourcentage3?: string
+  cepage4?: string
+  pourcentage4?: string
   noteClem?: string
   commentClem?: string
   noteBenji?: string
@@ -35,6 +39,12 @@ export default async function createTested(data: FormValues) {
   }
   if (data.cepage2 && data.pourcentage2) {
     cepageArray.push({ cepage: data.cepage2, pourcentage: parseInt(data.pourcentage2) });
+  }
+  if (data.cepage3 && data.pourcentage3) {
+    cepageArray.push({ cepage: data.cepage3, pourcentage: parseInt(data.pourcentage3) });
+  }
+  if (data.cepage4 && data.pourcentage4) {
+    cepageArray.push({ cepage: data.cepage4, pourcentage: parseInt(data.pourcentage4) });
   }
   const noteClem = data.noteClem ? parseFloat(data.noteClem) : null
   const commentClem = data.commentClem || null
