@@ -17,6 +17,10 @@ type StringifiedData = {
   pourcentage1?: string;
   cepage2?: string;
   pourcentage2?: string;
+  cepage3?: string;
+  pourcentage3?: string;
+  cepage4?: string;
+  pourcentage4?: string;
   noteClem?: string;
   commentClem?: string;
   noteBenji?: string;
@@ -29,8 +33,6 @@ export default async function Page({ params }: { params: Promise<{ vin: string }
   const selectedWine = await fetchSelected(vin)
   if (!selectedWine) return <NotFound />
 
-  console.log(selectedWine)
-
   const formattedSelectedWine: StringifiedData = {
     appelation: selectedWine.appelation,
     region: selectedWine.region,
@@ -42,6 +44,10 @@ export default async function Page({ params }: { params: Promise<{ vin: string }
     pourcentage1: (selectedWine.cepage as Cepage[])?.[0]?.pourcentage ? String((selectedWine.cepage as Cepage[])?.[0]?.pourcentage) : "",
     cepage2: (selectedWine.cepage as Cepage[])?.[1]?.cepage || "",
     pourcentage2: (selectedWine.cepage as Cepage[])?.[1]?.pourcentage ? String((selectedWine.cepage as Cepage[])?.[1]?.pourcentage) : "",
+    cepage3: (selectedWine.cepage as Cepage[])?.[2]?.cepage || "",
+    pourcentage3: (selectedWine.cepage as Cepage[])?.[2]?.pourcentage ? String((selectedWine.cepage as Cepage[])?.[2]?.pourcentage) : "",
+    cepage4: (selectedWine.cepage as Cepage[])?.[3]?.cepage || "",
+    pourcentage4: (selectedWine.cepage as Cepage[])?.[3]?.pourcentage ? String((selectedWine.cepage as Cepage[])?.[3]?.pourcentage) : "",
     noteClem: selectedWine.noteClem ? String(selectedWine.noteClem) : "",
     commentClem: selectedWine.commentClem as string,
     noteBenji: selectedWine.noteBenji ? String(selectedWine.noteBenji) : "",

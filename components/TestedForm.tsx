@@ -76,7 +76,7 @@ export default function TestedForm({ DefaultValues }: { DefaultValues?: z.infer<
     const hasCepage2 = values?.cepage2 !== "";
     const hasCepage3 = values?.cepage3 !== "";
     const hasCepage4 = values?.cepage4 !== "";
-    
+
     switch (true) {
       case hasCepage4:
         return 4;

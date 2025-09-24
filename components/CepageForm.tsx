@@ -50,7 +50,7 @@ export default function CepageForm({ form, cepageLength }: { form: UseFormReturn
           )}
         />
       </div>
-      <div className={`${cepageNumber < 2 ? "hidden" : "grid grid-cols-2 gap-4"}`}>
+      <div className={`${Math.max(cepageNumber, cepageLength) >= 2 ? "grid grid-cols-2 gap-4" : "hidden"}`}>
         <FormField
           control={form.control}
           name="cepage2"
@@ -78,7 +78,7 @@ export default function CepageForm({ form, cepageLength }: { form: UseFormReturn
           )}
         />
       </div>
-      <div className={`${cepageNumber < 3 ? "hidden" : "grid grid-cols-2 gap-4"}`}>
+      <div className={`${Math.max(cepageNumber, cepageLength) >= 3 ? "grid grid-cols-2 gap-4" : "hidden"}`}>
         <FormField
           control={form.control}
           name="cepage3"
@@ -106,7 +106,7 @@ export default function CepageForm({ form, cepageLength }: { form: UseFormReturn
           )}
         />
       </div>
-      <div className={`${cepageNumber < 4 ? "hidden" : "grid grid-cols-2 gap-4"}`}>
+      <div className={`${Math.max(cepageNumber, cepageLength) >= 4 ? "grid grid-cols-2 gap-4" : "hidden"}`}>
         <FormField
           control={form.control}
           name="cepage4"
