@@ -56,6 +56,8 @@ export default function TestedForm({ DefaultValues }: { DefaultValues?: z.infer<
     },
   })
 
+  console.log(form)
+
   async function onSubmit(values: z.infer<typeof formSchema>) {
     await createTested(values)
     console.log("values", values)
@@ -155,7 +157,7 @@ export default function TestedForm({ DefaultValues }: { DefaultValues?: z.infer<
             </FormItem>
           )}
         />
-        <CepageForm />
+        <CepageForm form={form} />
         <FormField
           control={form.control}
           name="noteClem"
