@@ -18,7 +18,7 @@ import {
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
 
-const formSchema = z.object({
+export const formSchema = z.object({
   appelation: z.string().min(2, {
     message: "L'appelation doit contenir au moins 2 caractères",
   }),
@@ -29,7 +29,10 @@ const formSchema = z.object({
   tastingDate: z.string().min(1, "Date requise").or(z.literal("")).optional(),
   year: z.string().min(4, "Min 4 caractères").or(z.literal("")).optional(),
   alcohol: z.string().min(2, "Min 2 caractères").or(z.literal("")).optional(),
-  cepage: z.string().min(2, "Min 2 caractères").or(z.literal("")).optional(),
+  cepage1: z.string().min(1, "Cépage requis").or(z.literal("")).optional(),
+  pourcentage1: z.string().min(1, "Pourcentage requis").or(z.literal("")).optional(),
+  cepage2: z.string().min(1, "Cépage requis").or(z.literal("")).optional(),
+  pourcentage2: z.string().min(1, "Pourcentage requis").or(z.literal("")).optional(),
   noteClem: z.string().max(2, "Max 2 caractères").or(z.literal("")).optional(),
   commentClem: z.string().min(2, "Min 2 caractères").or(z.literal("")).optional(),
   noteBenji: z.string().max(2, "Max 2 caractères").or(z.literal("")).optional(),
@@ -48,7 +51,10 @@ export default function TestedForm({ DefaultValues }: { DefaultValues?: z.infer<
       tastingDate: DefaultValues?.tastingDate || "",
       year: DefaultValues?.year || "",
       alcohol: DefaultValues?.alcohol || "",
-      cepage: DefaultValues?.cepage || "",
+      cepage1: DefaultValues?.cepage1 || "",
+      pourcentage1: DefaultValues?.pourcentage1 || "",
+      cepage2: DefaultValues?.cepage2 || "",
+      pourcentage2: DefaultValues?.pourcentage2 || "",
       noteClem: DefaultValues?.noteClem || "",
       noteBenji: DefaultValues?.noteBenji || "",
       commentClem: DefaultValues?.commentClem || "",

@@ -4,6 +4,7 @@ import NotFound from "@/app/not-found"
 import Link from "next/link"
 import { ArrowLeft } from "lucide-react"
 import DeleteButton from "@/components/DeleteButton"
+import { Cepage } from "@/utils/types"
 
 type StringifiedData = {
   appelation: string;
@@ -12,7 +13,10 @@ type StringifiedData = {
   tastingDate?: string;
   year?: string;
   alcohol?: string;
-  cepage?: string
+  cepage1?: string;
+  pourcentage1?: string;
+  cepage2?: string;
+  pourcentage2?: string;
   noteClem?: string;
   commentClem?: string;
   noteBenji?: string;
@@ -34,7 +38,10 @@ export default async function Page({ params }: { params: Promise<{ vin: string }
     tastingDate: selectedWine.tastingDate ? selectedWine.tastingDate.toISOString().split('T')[0] : "",
     year: String(selectedWine.year),
     alcohol: String(selectedWine.alcohol),
-    cepage: selectedWine.cepage as string,
+    cepage1: (selectedWine.cepage as Cepage[])?.[0]?.cepage || "",
+    pourcentage1: (selectedWine.cepage as Cepage[])?.[0]?.pourcentage ? String((selectedWine.cepage as Cepage[])?.[0]?.pourcentage) : "",
+    cepage2: (selectedWine.cepage as Cepage[])?.[1]?.cepage || "",
+    pourcentage2: (selectedWine.cepage as Cepage[])?.[1]?.pourcentage ? String((selectedWine.cepage as Cepage[])?.[1]?.pourcentage) : "",
     noteClem: selectedWine.noteClem ? String(selectedWine.noteClem) : "",
     commentClem: selectedWine.commentClem as string,
     noteBenji: selectedWine.noteBenji ? String(selectedWine.noteBenji) : "",

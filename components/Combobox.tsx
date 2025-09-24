@@ -43,9 +43,12 @@ const frameworks = [
   },
 ]
 
-export default function Combobox() {
+export default function Combobox({ value, onValueChange, placeholder = "Select cépage..." }: {
+  value?: string;
+  onValueChange?: (value: string) => void;
+  placeholder?: string;
+}) {
   const [open, setOpen] = useState(false)
-  const [value, setValue] = useState("")
 
   return (
     <Popover open={open} onOpenChange={setOpen}>
@@ -54,26 +57,27 @@ export default function Combobox() {
           variant="outline"
           role="combobox"
           aria-expanded={open}
-          className="w-[200px] justify-between"
+          className="w-full justify-between"
         >
           {value
             ? frameworks.find((framework) => framework.value === value)?.label
-            : "Select framework..."}
+            : placeholder}
           <ChevronsUpDownIcon className="ml-2 h-4 w-4 shrink-0 opacity-50" />
         </Button>
       </PopoverTrigger>
-      <PopoverContent className="w-[200px] p-0">
+      <PopoverContent className="w-full p-0">
         <Command>
-          <CommandInput placeholder="Search framework..." />
+          <CommandInput placeholder="Search cépage..." />
           <CommandList>
-            <CommandEmpty>No framework found.</CommandEmpty>
+            <CommandEmpty>No cépage found.</CommandEmpty>
             <CommandGroup>
               {frameworks.map((framework) => (
                 <CommandItem
                   key={framework.value}
                   value={framework.value}
                   onSelect={(currentValue) => {
-                    setValue(currentValue === value ? "" : currentValue)
+                    const newValue = currentValue === value ? "" : currentValue
+                    onValueChange?.(newValue)
                     setOpen(false)
                   }}
                 >

@@ -11,7 +11,10 @@ type FormValues = {
   tastingDate?: string
   year?: string
   alcohol?: string
-  cepage?: string
+  cepage1?: string
+  pourcentage1?: string
+  cepage2?: string
+  pourcentage2?: string
   noteClem?: string
   commentClem?: string
   noteBenji?: string
@@ -26,7 +29,13 @@ export default async function createTested(data: FormValues) {
   const tastingDate = data.tastingDate ? new Date(data.tastingDate) : null
   const year = data.year ? parseInt(data.year) : null
   const alcohol = data.alcohol ? parseFloat(data.alcohol) : null
-  const cepage = data.cepage || ""
+  const cepageArray = [];
+  if (data.cepage1 && data.pourcentage1) {
+    cepageArray.push({ cepage: data.cepage1, pourcentage: parseInt(data.pourcentage1) });
+  }
+  if (data.cepage2 && data.pourcentage2) {
+    cepageArray.push({ cepage: data.cepage2, pourcentage: parseInt(data.pourcentage2) });
+  }
   const noteClem = data.noteClem ? parseFloat(data.noteClem) : null
   const commentClem = data.commentClem || null
   const noteBenji = data.noteBenji ? parseFloat(data.noteBenji) : null
@@ -44,7 +53,7 @@ export default async function createTested(data: FormValues) {
       tastingDate,
       year,
       alcohol,
-      cepage,
+      cepage: cepageArray,
       noteClem,
       commentClem,
       noteBenji,
@@ -62,7 +71,7 @@ export default async function createTested(data: FormValues) {
       tastingDate,
       year,
       alcohol,
-      cepage,
+      cepage: cepageArray,
       noteClem,
       commentClem,
       noteBenji,

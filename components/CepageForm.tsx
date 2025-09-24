@@ -1,10 +1,5 @@
 "use client"
 
-import { zodResolver } from "@hookform/resolvers/zod"
-import { useForm } from "react-hook-form"
-import { z } from "zod"
-import { useRouter } from "next/navigation"
-import { Button } from "@/components/ui/button"
 import {
   FormControl,
   FormField,
@@ -14,22 +9,26 @@ import {
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
 import Combobox from "./Combobox"
+import { UseFormReturn } from "react-hook-form"
+import { z } from "zod"
+import { formSchema } from "@/components/TestedForm"
 
 
 
-export default function CepageForm({form} : {form : any}) {
+export default function CepageForm({form} : {form : UseFormReturn<z.infer<typeof formSchema>>}) {
 
 
   return (
+    <>
     <div className="grid grid-cols-2 gap-4">
       <FormField
         control={form.control}
-        name="appelation"
+        name="cepage1"
         render={({ field }) => (
           <FormItem>
-            <FormLabel>Cépage</FormLabel>
+            <FormLabel>Cépage 1</FormLabel>
             <FormControl>
-              <Combobox />
+              <Combobox value={field.value} onValueChange={field.onChange} />
             </FormControl>
             <FormMessage />
           </FormItem>
@@ -37,17 +36,47 @@ export default function CepageForm({form} : {form : any}) {
       />
       <FormField
         control={form.control}
-        name="appelation"
+        name="pourcentage1"
         render={({ field }) => (
           <FormItem>
-            <FormLabel>Pourcentage (%)</FormLabel>
+            <FormLabel>Pourcentage 1 (%)</FormLabel>
             <FormControl>
-              <Input className="bg-white" placeholder="Degré d’alcool (ex : 13.5)" type="number" step={0.5} min={0} max={100} {...field} />
+              <Input className="bg-white" placeholder="%" type="number" step={1} min={0} max={100} {...field} />
             </FormControl>
             <FormMessage />
           </FormItem>
         )}
       />
     </div>
+    <div className="grid grid-cols-2 gap-4">
+      <FormField
+        control={form.control}
+        name="cepage2"
+        render={({ field }) => (
+          <FormItem>
+            <FormLabel>Cépage 2</FormLabel>
+            <FormControl>
+              <Combobox value={field.value} onValueChange={field.onChange} />
+            </FormControl>
+            <FormMessage />
+          </FormItem>
+        )}
+      />
+      <FormField
+        control={form.control}
+        name="pourcentage2"
+        render={({ field }) => (
+          <FormItem>
+            <FormLabel>Pourcentage 2 (%)</FormLabel>
+            <FormControl>
+              <Input className="bg-white" placeholder="%" type="number" step={1} min={0} max={100} {...field} />
+            </FormControl>
+            <FormMessage />
+          </FormItem>
+        )}
+      />
+    </div>
+    
+    </>
   )
 }
