@@ -30,4 +30,5 @@ model vin {
   noteBenji    Int?
   commentBenji String?
   createdAt    DateTime  @default(now())
+  modifiedAt   DateTime  @updatedAt
 }
