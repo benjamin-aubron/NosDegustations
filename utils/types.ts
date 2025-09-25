@@ -7,7 +7,7 @@ export type Data = {
   id: string;
   tastingDate?: Date;
   tasted: boolean;
-  image?: string;
+  photoUrl?: string;
   domain?: string;
   appelation: string;
   region: string;
