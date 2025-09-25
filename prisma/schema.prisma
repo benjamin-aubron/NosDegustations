@@ -13,14 +13,8 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model comment {
-  id        String   @id @default(cuid())
-  comment   String
-  createdAt DateTime @default(now())
-}
-
 model vin {
-  id           String   @id @default(cuid())
+  id           String    @id @default(cuid())
   tasted       Boolean
   appelation   String
   region       String
@@ -29,11 +23,11 @@ model vin {
   domain       String?
   year         Int?
   alcohol      Int?
-  photo        String?
+  photoUrl     String?
   cepage       Json?
   noteClem     Int?
   commentClem  String?
   noteBenji    Int?
   commentBenji String?
-  createdAt    DateTime @default(now())
+  createdAt    DateTime  @default(now())
 }
