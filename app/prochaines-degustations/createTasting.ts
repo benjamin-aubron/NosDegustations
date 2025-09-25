@@ -49,6 +49,6 @@ export default async function createTasting(formData: FormData) {
     console.log("Tasting créé avec succès", { appelation, region })
     
   } catch{
-    console.log("Erreur de validation ou dans la DB -> menez l'enquête")
+    console.log("🔴 Erreur de validation ou dans la DB -> menez l'enquête")
   }
 }

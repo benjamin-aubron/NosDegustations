@@ -1,0 +1,2 @@
+-- AlterTable
+ALTER TABLE "public"."vin" ALTER COLUMN "modifiedAt" SET DEFAULT CURRENT_TIMESTAMP;
