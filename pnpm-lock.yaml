@@ -35,6 +35,9 @@ importers:
       '@radix-ui/react-slot':
         specifier: ^1.2.3
         version: 1.2.3(@types/react@19.1.12)(react@19.1.0)
+      '@uploadcare/nextjs-loader':
+        specifier: ^1.0.0
+        version: 1.0.0(next@15.5.3(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react@19.1.0)
       '@uploadcare/react-uploader':
         specifier: ^1.10.2
         version: 1.10.2(@types/react@19.1.12)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
@@ -1218,6 +1221,12 @@ packages:
 
   '@uploadcare/image-shrink@6.17.0':
     resolution: {integrity: sha512-9ZIQR2Uad7BeSH0hqo7W/VenHCwnEqRjFpN6SGynTzG6BxoH/HK8NkuMKdJ8URFisW7dZSXpVMZrCL5kf7FfKA==}
+
+  '@uploadcare/nextjs-loader@1.0.0':
+    resolution: {integrity: sha512-zLTMW21VgRKenOfQ5uAWVMMjimnsaawXncqOwwedd/ysp3t9tmjVrAg6Mo5K8bk0rtoBTTrh0LKxLIaQj1xBUQ==}
+    peerDependencies:
+      next: '>=10.0.5'
+      react: '>=17.0.0'
 
   '@uploadcare/react-adapter@0.3.1':
     resolution: {integrity: sha512-OyGmGkD/u1CSlFZRY+fze/i90B1NDcdQblRn9bgNFY5JdGQMBWfiUGRbw0CKVcKXKkMJY7cuR8qVEzVd1U/UUQ==}
@@ -3998,6 +4007,11 @@ snapshots:
       - utf-8-validate
 
   '@uploadcare/image-shrink@6.17.0': {}
+
+  '@uploadcare/nextjs-loader@1.0.0(next@15.5.3(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react@19.1.0)':
+    dependencies:
+      next: 15.5.3(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      react: 19.1.0
 
   '@uploadcare/react-adapter@0.3.1(@types/react@19.1.12)':
     dependencies:
