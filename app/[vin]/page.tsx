@@ -28,7 +28,8 @@ export default async function Page({ params }: { params: Promise<{ vin: string }
             <h1 className="text-4xl font-medium">{selectedWine?.appelation}</h1>
             <Link href={`/modifier-degustation/${selectedWine?.id}`} className="cursor-pointer hover:bg-neutral-200 ml-4 mt-1 px-2 py-1 rounded mr-2">
               <PencilLine className="w-6 h-8 text-neutral-500" />
-            </Link>          </div>
+            </Link>
+          </div>
           <div className="pt-4">
             <div className="text-neutral-800 font-medium text-lg">{selectedWine?.region}</div>
             <div className="text-neutral-500 font-medium text-lg">{selectedWine?.domain}</div>
