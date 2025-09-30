@@ -7,6 +7,7 @@ import { ArrowLeft } from "lucide-react"
 import fetchSelected from "@/app/ajouter-degustations/fetchSelected"
 import NotFound from "@/app/not-found"
 import { PencilLine } from "lucide-react"
+import Image from "next/image"
 
 export default async function Page({ params }: { params: Promise<{ vin: string }> }) {
   const { vin } = await params
@@ -36,7 +37,7 @@ export default async function Page({ params }: { params: Promise<{ vin: string }
           </div>
         </div>
         <div className="w-full h-[300px] bg-neutral-300 rounded-2xl flex flex-col justify-center items-center">
-          Image
+          <Image src={`https://uolzb0jhuaocohjh.public.blob.vercel-storage.com/monImage.avif`} alt="No image" className="w-full h-full" />
         </div>
       </div>
       <div className="bg-neutral-200 rounded-2xl p-4">
