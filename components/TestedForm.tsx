@@ -51,7 +51,6 @@ export default function TestedForm({ DefaultValues }: { DefaultValues?: z.infer<
 
   const inputFileRef = useRef<HTMLInputElement>(null);
   const [blob, setBlob] = useState<PutBlobResult | null>(null);
-
   const router = useRouter()
 
   const form = useForm<z.infer<typeof formSchema>>({
@@ -283,7 +282,9 @@ return (
           </FormItem>
         )}
       />
-      <Button type="submit" className="cursor-pointer">Submit</Button>
+      <Button type="submit" className="cursor-pointer" disabled={form.formState.isSubmitting}>
+        {form.formState.isSubmitting ? "En cours d'envoi..." : "Envoyer"}
+      </Button>
     </form>
   </Form>
 )
