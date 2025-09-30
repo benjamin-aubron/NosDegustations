@@ -20,7 +20,7 @@ export async function POST(request: Request): Promise<NextResponse> {
           allowedContentTypes: ['image/jpeg', 'image/png', 'image/webp', 'image/avif'],
           addRandomSuffix: false,
           allowOverwrite: true,
-          // callbackUrl: 'https://example.com/api/avatar/upload',
+          // callbackUrl: 'https://example.com/api/blob/upload',
           // optional, `callbackUrl` is automatically computed when hosted on Vercel
           tokenPayload: JSON.stringify({
             // optional, sent to your server on upload completion

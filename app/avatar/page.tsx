@@ -38,7 +38,7 @@ export default function AvatarUploadPage() {
 
             const newBlob = await upload('monImage.avif', compressedFile, {
               access: 'public',
-              handleUploadUrl: '/api/avatar/upload',
+              handleUploadUrl: '/api/blob/upload',
             });
 
             setBlob(newBlob);

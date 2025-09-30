@@ -11,7 +11,7 @@ export default function DeleteAvatar() {
 
   const handleDelete = async () => {
     try {
-      const response = await fetch('/api/avatar/delete', {
+      const response = await fetch('/api/blob/delete', {
         method: 'DELETE'
       })
       

@@ -15,8 +15,8 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
     // Compression en AVIF avec Sharp
     const avifBuffer = await sharp(buffer)
       .avif({ 
-        quality: 40,  // Qualité de compression (0-100)
-        effort: 4     // Effort de compression (0-9, plus élevé = meilleure compression)
+        quality: 30,  // Qualité de compression (0-100)
+        effort: 3     // Effort de compression (0-9, plus élevé = meilleure compression)
       })
       .toBuffer();
 
