@@ -36,8 +36,8 @@ export default async function Page({ params }: { params: Promise<{ vin: string }
             <div className="text-neutral-500 font-medium text-lg">{selectedWine?.domain}</div>
           </div>
         </div>
-        <div className="w-full h-[300px] bg-neutral-300 rounded-2xl flex flex-col justify-center items-center">
-          <Image src={`https://uolzb0jhuaocohjh.public.blob.vercel-storage.com/monImage.avif`} alt="No image" className="w-full h-full" />
+        <div className="w-full h-[300px] bg-neutral-300 rounded-2xl flex flex-col justify-center items-center overflow-hidden">
+          <Image src={`https://uolzb0jhuaocohjh.public.blob.vercel-storage.com/${vin}.avif`} alt={`${vin} image`} className="w-full" width={300} height={300} />
         </div>
       </div>
       <div className="bg-neutral-200 rounded-2xl p-4">

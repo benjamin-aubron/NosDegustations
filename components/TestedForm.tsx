@@ -141,6 +141,19 @@ export default function TestedForm({ DefaultValues }: { DefaultValues?: z.infer<
         />
         <FormField
           control={form.control}
+          name="domain"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Domaine</FormLabel>
+              <FormControl>
+                <Input className="bg-white" placeholder="Domaine" {...field} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <FormField
+          control={form.control}
           name="tastingDate"
           render={({ field }) => (
             <FormItem>

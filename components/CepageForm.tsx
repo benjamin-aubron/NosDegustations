@@ -134,8 +134,7 @@ export default function CepageForm({ form, cepageLength }: { form: UseFormReturn
           )}
         />
       </div>
-      <Button type="button" onClick={() => setCepageNumber(cepageNumber + 1)} className="mt-2 cursor-pointer" disabled={cepageNumber >= 4}>Ajouter un cépage</Button>
-
+      <Button type="button" onClick={() => setCepageNumber(cepageNumber + 1)} className="mt-2 cursor-pointer bg-neutral-400 hover:bg-neutral-600" disabled={cepageNumber >= 4}>Ajouter un cépage</Button>
     </div>
   )
 }
