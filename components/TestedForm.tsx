@@ -98,194 +98,194 @@ export default function TestedForm({ DefaultValues }: { DefaultValues?: z.infer<
     }
   }
 
-async function onSubmit(values: z.infer<typeof formSchema>) {
-  // Upload l'image d'abord si un fichier est sélectionné
-  if (inputFileRef.current?.files?.[0]) {
-    const file = inputFileRef.current.files[0];
-    const formData = new FormData();
-    formData.append('file', file);
+  async function onSubmit(values: z.infer<typeof formSchema>) {
+    // Upload l'image d'abord si un fichier est sélectionné
+    if (inputFileRef.current?.files?.[0]) {
+      const file = inputFileRef.current.files[0];
+      const formData = new FormData();
+      formData.append('file', file);
 
-    const compressResponse = await fetch('/api/compress', {
-      method: 'POST',
-      body: formData
-    });
+      const compressResponse = await fetch('/api/compress', {
+        method: 'POST',
+        body: formData
+      });
 
-    const compressedBlob = await compressResponse.blob();
-    const compressedFile = new File([compressedBlob], `${toSnakeCase(values.appelation)}.avif`, { type: 'image/avif' });
+      const compressedBlob = await compressResponse.blob();
+      const compressedFile = new File([compressedBlob], `${toSnakeCase(values.appelation)}.avif`, { type: 'image/avif' });
 
-    const newBlob = await upload(`${toSnakeCase(values.appelation)}.avif`, compressedFile, {
-      access: 'public',
-      handleUploadUrl: '/api/blob/upload',
-    });
+      const newBlob = await upload(`${toSnakeCase(values.appelation)}.avif`, compressedFile, {
+        access: 'public',
+        handleUploadUrl: '/api/blob/upload',
+      });
 
-    setBlob(newBlob);
-    console.log("Image uploadée:", newBlob.url);
+      setBlob(newBlob);
+      console.log("Image uploadée:", newBlob.url);
+    }
+
+    await createTested(values)
+    console.log("values", values)
+    router.push("/")
   }
 
-  await createTested(values)
-  console.log("values", values)
-  router.push("/")
-}
-
-return (
-  <Form {...form}>
-    <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
-      <FormField
-        control={form.control}
-        name="appelation"
-        render={({ field }) => (
-          <FormItem>
-            <FormLabel>Appelation (obligatoire)</FormLabel>
-            <FormControl>
-              <Input className="bg-white" placeholder="Entrer l'appelation" {...field} />
-            </FormControl>
-            <FormMessage />
-          </FormItem>
-        )}
-      />
-      <FormField
-        control={form.control}
-        name="region"
-        render={({ field }) => (
-          <FormItem>
-            <FormLabel>Région (obligatoire)</FormLabel>
-            <FormControl>
-              <Input className="bg-white" placeholder="Région" {...field} />
-            </FormControl>
-            <FormMessage />
-          </FormItem>
-        )}
-      />
-      <FormField
-        control={form.control}
-        name="domain"
-        render={({ field }) => (
-          <FormItem>
-            <FormLabel>Domaine</FormLabel>
-            <FormControl>
-              <Input className="bg-white" placeholder="Domaine" {...field} />
-            </FormControl>
-            <FormMessage />
-          </FormItem>
-        )}
-      />
-      <div className="space-y-2">
-        <label className="text-sm font-medium">Photo</label>
-        <Input
-          className="bg-white"
-          type="file"
-          ref={inputFileRef}
-          accept="image/*"
+  return (
+    <Form {...form}>
+      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+        <FormField
+          control={form.control}
+          name="appelation"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Appelation (obligatoire)</FormLabel>
+              <FormControl>
+                <Input className="bg-white" placeholder="Entrer l'appelation" {...field} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
         />
-      </div>
-      <FormField
-        control={form.control}
-        name="tastingDate"
-        render={({ field }) => (
-          <FormItem>
-            <FormLabel>Date de la dégustation</FormLabel>
-            <FormControl>
-              <Input
-                className="bg-white"
-                placeholder="Date de la dégustation (ex : 15/03/2025)"
-                type="date"
-                {...field}
-              />
-            </FormControl>
-            <FormMessage />
-          </FormItem>
-        )}
-      />
-      <FormField
-        control={form.control}
-        name="year"
-        render={({ field }) => (
-          <FormItem>
-            <FormLabel>Année</FormLabel>
-            <FormControl>
-              <Input
-                className="bg-white"
-                placeholder="Année (ex : 2015)"
-                type="number"
-                {...field}
-                min={1900}
-                max={new Date().getFullYear()}
-              />
-            </FormControl>
-            <FormMessage />
-          </FormItem>
-        )}
-      />
-      <FormField
-        control={form.control}
-        name="alcohol"
-        render={({ field }) => (
-          <FormItem>
-            <FormLabel>Alcool (%)</FormLabel>
-            <FormControl>
-              <Input className="bg-white" placeholder="Degré d’alcool (ex : 13.5)" type="number" step={0.5} min={0} max={100} {...field} />
-            </FormControl>
-            <FormMessage />
-          </FormItem>
-        )}
-      />
-      <CepageForm form={form} cepageLength={cepageLength()} />
-      <FormField
-        control={form.control}
-        name="noteClem"
-        render={({ field }) => (
-          <FormItem>
-            <FormLabel>Note de Clémence</FormLabel>
-            <FormControl>
-              <Input className="bg-white" placeholder="Entrer la note de Clémence (0-10)" type="number" {...field} min={0} max={10} />
-            </FormControl>
-            <FormMessage />
-          </FormItem>
-        )}
-      />
-      <FormField
-        control={form.control}
-        name="commentClem"
-        render={({ field }) => (
-          <FormItem>
-            <FormLabel>Commentaire de Clémence</FormLabel>
-            <FormControl>
-              <Input className="bg-white" placeholder="Entrer le commentaire de Clémence" {...field} />
-            </FormControl>
-            <FormMessage />
-          </FormItem>
-        )}
-      />
-      <FormField
-        control={form.control}
-        name="noteBenji"
-        render={({ field }) => (
-          <FormItem>
-            <FormLabel>Note de Benji</FormLabel>
-            <FormControl>
-              <Input className="bg-white" placeholder="Entrer la note de Benji (0-10)" type="number" {...field} min={0} max={10} />
-            </FormControl>
-            <FormMessage />
-          </FormItem>
-        )}
-      />
-      <FormField
-        control={form.control}
-        name="commentBenji"
-        render={({ field }) => (
-          <FormItem>
-            <FormLabel>Commentaire de Benji</FormLabel>
-            <FormControl>
-              <Input className="bg-white" placeholder="Entrer le commentaire de Benji" {...field} />
-            </FormControl>
-            <FormMessage />
-          </FormItem>
-        )}
-      />
-      <Button type="submit" className="cursor-pointer" disabled={form.formState.isSubmitting}>
-        {form.formState.isSubmitting ? "En cours d'envoi..." : "Envoyer"}
-      </Button>
-    </form>
-  </Form>
-)
+        <FormField
+          control={form.control}
+          name="region"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Région (obligatoire)</FormLabel>
+              <FormControl>
+                <Input className="bg-white" placeholder="Région" {...field} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <FormField
+          control={form.control}
+          name="domain"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Domaine</FormLabel>
+              <FormControl>
+                <Input className="bg-white" placeholder="Domaine" {...field} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <div className="space-y-2">
+          <label className="text-sm font-medium">Photo</label>
+          <Input
+            className="bg-white"
+            type="file"
+            ref={inputFileRef}
+            accept="image/*"
+          />
+        </div>
+        <FormField
+          control={form.control}
+          name="tastingDate"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Date de la dégustation</FormLabel>
+              <FormControl>
+                <Input
+                  className="bg-white"
+                  placeholder="Date de la dégustation (ex : 15/03/2025)"
+                  type="date"
+                  {...field}
+                />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <FormField
+          control={form.control}
+          name="year"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Année</FormLabel>
+              <FormControl>
+                <Input
+                  className="bg-white"
+                  placeholder="Année (ex : 2015)"
+                  type="number"
+                  {...field}
+                  min={1900}
+                  max={new Date().getFullYear()}
+                />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <FormField
+          control={form.control}
+          name="alcohol"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Alcool (%)</FormLabel>
+              <FormControl>
+                <Input className="bg-white" placeholder="Degré d’alcool (ex : 13.5)" type="number" step={0.5} min={0} max={100} {...field} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <CepageForm form={form} cepageLength={cepageLength()} />
+        <FormField
+          control={form.control}
+          name="noteClem"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Note de Clémence</FormLabel>
+              <FormControl>
+                <Input className="bg-white" placeholder="Entrer la note de Clémence (0-10)" type="number" {...field} min={0} max={10} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <FormField
+          control={form.control}
+          name="commentClem"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Commentaire de Clémence</FormLabel>
+              <FormControl>
+                <Input className="bg-white" placeholder="Entrer le commentaire de Clémence" {...field} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <FormField
+          control={form.control}
+          name="noteBenji"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Note de Benji</FormLabel>
+              <FormControl>
+                <Input className="bg-white" placeholder="Entrer la note de Benji (0-10)" type="number" {...field} min={0} max={10} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <FormField
+          control={form.control}
+          name="commentBenji"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Commentaire de Benji</FormLabel>
+              <FormControl>
+                <Input className="bg-white" placeholder="Entrer le commentaire de Benji" {...field} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <Button type="submit" className="cursor-pointer" disabled={form.formState.isSubmitting}>
+          {form.formState.isSubmitting ? "En cours d'envoi..." : "Envoyer"}
+        </Button>
+      </form>
+    </Form>
+  )
 }
