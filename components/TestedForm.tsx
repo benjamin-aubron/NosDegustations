@@ -20,6 +20,8 @@ import { PutBlobResult } from '@vercel/blob';
 import { upload } from '@vercel/blob/client';
 import { useState, useRef } from 'react';
 import { toSnakeCase } from "@/lib/utils"
+import ImageUploader from "@/components/ImageUploader"
+import FileUploader from "@/components/FileUploader"
 
 
 export const formSchema = z.object({
@@ -169,15 +171,8 @@ export default function TestedForm({ DefaultValues }: { DefaultValues?: z.infer<
             </FormItem>
           )}
         />
-        <div className="space-y-2">
-          <label className="text-sm font-medium">Photo</label>
-          <Input
-            className="bg-white"
-            type="file"
-            ref={inputFileRef}
-            accept="image/*"
-          />
-        </div>
+        {/* <ImageUploader inputFileRef={inputFileRef} appelation={DefaultValues?.appelation} /> */}
+        <FileUploader appelation={DefaultValues?.appelation}/>
         <FormField
           control={form.control}
           name="tastingDate"
