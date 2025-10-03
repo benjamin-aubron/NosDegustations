@@ -20,7 +20,6 @@ import { PutBlobResult } from '@vercel/blob';
 import { upload } from '@vercel/blob/client';
 import { useState, useRef } from 'react';
 import { toSnakeCase } from "@/lib/utils"
-import ImageUploader from "@/components/ImageUploader"
 import FileUploader from "@/components/FileUploader"
 
 
@@ -53,6 +52,7 @@ export default function TestedForm({ DefaultValues }: { DefaultValues?: z.infer<
 
   const inputFileRef = useRef<HTMLInputElement>(null);
   const [blob, setBlob] = useState<PutBlobResult | null>(null);
+  const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const router = useRouter()
 
   const form = useForm<z.infer<typeof formSchema>>({
@@ -101,27 +101,18 @@ export default function TestedForm({ DefaultValues }: { DefaultValues?: z.infer<
   }
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
-    // Upload l'image d'abord si un fichier est sélectionné
-    if (inputFileRef.current?.files?.[0]) {
-      const file = inputFileRef.current.files[0];
-      const formData = new FormData();
-      formData.append('file', file);
-
-      const compressResponse = await fetch('/api/compress', {
-        method: 'POST',
-        body: formData
-      });
-
-      const compressedBlob = await compressResponse.blob();
-      const compressedFile = new File([compressedBlob], `${toSnakeCase(values.appelation)}.avif`, { type: 'image/avif' });
-
-      const newBlob = await upload(`${toSnakeCase(values.appelation)}.avif`, compressedFile, {
-        access: 'public',
-        handleUploadUrl: '/api/blob/upload',
-      });
-
-      setBlob(newBlob);
-      console.log("Image uploadée:", newBlob.url);
+    // Upload l'image si un fichier est sélectionné
+    if (selectedFile) {
+      try {
+        const appelationSnakeCase = toSnakeCase(values.appelation);
+        const newBlob = await upload(`${appelationSnakeCase}.avif`, selectedFile, {
+          access: 'public',
+          handleUploadUrl: '/api/blob/upload',
+        });
+        console.log("Image uploadée:", newBlob.url);
+      } catch (error) {
+        console.error("Erreur lors de l'upload:", error);
+      }
     }
 
     await createTested(values)
@@ -171,8 +162,10 @@ export default function TestedForm({ DefaultValues }: { DefaultValues?: z.infer<
             </FormItem>
           )}
         />
-        {/* <ImageUploader inputFileRef={inputFileRef} appelation={DefaultValues?.appelation} /> */}
-        <FileUploader appelation={DefaultValues?.appelation}/>
+        <FileUploader
+          appelation={form.watch("appelation")}
+          onFileSelect={setSelectedFile}
+        />
         <FormField
           control={form.control}
           name="tastingDate"

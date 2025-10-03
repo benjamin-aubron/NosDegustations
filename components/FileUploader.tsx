@@ -3,12 +3,17 @@
 import { ImageIcon } from "lucide-react"
 import { useState, useEffect } from "react"
 import { useRouter } from "next/navigation"
-
 import { useFileUpload } from "@/hooks/use-file-upload"
 import { Button } from "@/components/ui/button"
 import { toSnakeCase } from "@/lib/utils"
 
-export default function FileUploader({ appelation }: { appelation: string | undefined }) {
+export default function FileUploader({
+  appelation,
+  onFileSelect
+}: {
+  appelation: string | undefined
+  onFileSelect?: (file: File | null) => void
+}) {
   const router = useRouter()
   const [{ files }, { removeFile, openFileDialog, getInputProps }] =
     useFileUpload({
@@ -16,6 +21,12 @@ export default function FileUploader({ appelation }: { appelation: string | unde
     })
   const appelationSnakeCase = appelation ? toSnakeCase(appelation) : null
   const [existingImageUrl, setExistingImageUrl] = useState<string | null>(null)
+
+  // Notifier le parent quand les fichiers changent
+  useEffect(() => {
+    const selectedFile = files[0]?.file instanceof File ? files[0].file : null
+    onFileSelect?.(selectedFile)
+  }, [files])
 
   async function LoadImage(appelationSnakeCase: string | null) {
     if (!appelationSnakeCase) return

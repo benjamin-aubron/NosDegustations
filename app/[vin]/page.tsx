@@ -14,7 +14,6 @@ export default async function Page({ params }: { params: Promise<{ vin: string }
 
   const selectedWine = await fetchSelected(vin)
   if (!selectedWine) return <NotFound />
-  console.log(selectedWine)
 
   const cepages: Cepage[] = Array.isArray(selectedWine?.cepage)
     ? selectedWine.cepage as Cepage[]
