@@ -24,12 +24,14 @@ export default async function Page({ params }: { params: Promise<{ vin: string }
     <div className="space-y-4">
       <div className="grid grid-cols-2 gap-4">
         <div className="p-4">
-          <Link href={`/`} className="flex items-center gap-1 text-lg hover:bg-neutral-200 rounded-xl w-fit pl-2 pr-3 py-2 mb-8"> <ArrowLeft className="w-5 h-5" /> Retour</Link>
-          <div className="flex justify-start items-bottom">
-            <h1 className="text-4xl font-medium">{selectedWine?.appelation}</h1>
+          <div className="flex justify-between mb-8">
+            <Link href={`/`} className="flex items-center gap-1 text-lg hover:bg-neutral-200 rounded-xl w-fit pl-2 pr-3 py-2"><ArrowLeft className="w-5 h-5" /> Retour</Link>
             <Link href={`/modifier-degustation/${selectedWine?.id}`} className="cursor-pointer hover:bg-neutral-200 ml-4 mt-1 px-2 py-1 rounded mr-2">
               <PencilLine className="w-6 h-8 text-neutral-500" />
             </Link>
+          </div>
+          <div className="flex justify-start items-bottom">
+            <h1 className="text-4xl font-medium">{selectedWine?.appelation}</h1>
           </div>
           <div className="pt-4">
             <div className="text-neutral-800 font-medium text-lg">{selectedWine?.region}</div>

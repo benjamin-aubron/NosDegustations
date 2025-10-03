@@ -1,5 +1,5 @@
 import ToBeTestedCard from "./NextTastingCard"
-import { PencilLine } from "lucide-react"
+import { Plus } from "lucide-react"
 import Link from "next/link"
 import fetchTasting from "@/app/prochaines-degustations/fetchTasting"
 
@@ -12,8 +12,8 @@ export default async function NextTasting() {
     <div>
       <div className="flex justify-between items-end">
         <h2 className="text-2xl mt-6 mb-4 px-2">Prochaines dégustations</h2>
-        <Link href={"/prochaines-degustations"} className="cursor-pointer hover:bg-neutral-200 px-2 py-1 rounded mr-2 mb-2">
-          <PencilLine className="w-6 h-8 text-neutral-500" />
+        <Link href={"/prochaines-degustations"} className="cursor-pointer hover:bg-neutral-200 px-2 py-1 rounded-full mr-2 mb-2">
+          <Plus className="w-6 h-8 text-neutral-500" />
         </Link>
       </div>
       {data?.map((d) => (
