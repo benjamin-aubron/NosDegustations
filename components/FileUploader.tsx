@@ -130,7 +130,7 @@ export default function FileUploader({
               className="text-destructive font-medium hover:underline cursor-pointer"
               aria-label={`Remove ${fileName}`}
             >
-              Supprimer l'image
+              Supprimer l&apos;image
             </button>
           </div>
         )}
