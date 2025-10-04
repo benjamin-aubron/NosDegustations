@@ -1,8 +1,6 @@
 "use server"
-import { PrismaClient } from "@prisma/client"
+import prisma from "@/lib/prisma"
 import { del } from '@vercel/blob'
-
-const prisma = new PrismaClient()
 
 export default async function deleteWine(id: string) {
   try {

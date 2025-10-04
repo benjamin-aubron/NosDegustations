@@ -1,5 +1,5 @@
 "use server"
-import { PrismaClient } from "@prisma/client"
+import prisma from "@/lib/prisma"
 import { revalidatePath } from "next/cache"
 import { toSnakeCase } from "@/lib/utils"
 import zod from "zod"
@@ -12,8 +12,6 @@ const formSchema = zod.object({
     message: "La région doit contenir au moins 2 caractères",
   }),
 })
-
-const prisma = new PrismaClient()
 
 export default async function createTasting(formData: FormData) {
 

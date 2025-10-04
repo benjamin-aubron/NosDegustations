@@ -1,8 +1,6 @@
 "use server"
-import { PrismaClient } from "@prisma/client"
+import prisma from "@/lib/prisma"
 import { toSnakeCase } from "@/lib/utils"
-
-const prisma = new PrismaClient()
 
 type FormValues = {
   appelation: string
