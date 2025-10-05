@@ -13,7 +13,7 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model vin {
+model Vin {
   id           String    @id @default(cuid())
   tasted       Boolean
   appelation   String
@@ -31,4 +31,6 @@ model vin {
   commentBenji String?
   createdAt    DateTime  @default(now())
   modifiedAt   DateTime  @updatedAt @default(now())
+
+  @@map("vin")
 }
