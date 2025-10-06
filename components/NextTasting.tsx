@@ -10,10 +10,10 @@ export default async function NextTasting() {
 
   return (
     <div>
-      <div className="flex justify-between items-end">
-        <h2 className="text-2xl mt-6 mb-4 px-2">Prochaines dégustations</h2>
-        <Link href={"/prochaines-degustations"} className="cursor-pointer hover:bg-neutral-200 px-2 py-1 rounded-full mr-2 mb-2">
-          <Plus className="w-6 h-8 text-neutral-500" />
+      <div className="flex justify-between items-center mt-6 mb-2">
+        <h2 className="text-2xl px-2 text-primary font-bold">Prochaines dégustations</h2>
+        <Link href={"/prochaines-degustations"} className="cursor-pointer hover:bg-primary px-2 py-1 rounded-full mr-2 group">
+          <Plus className="w-6 h-8 text-primary group-hover:text-white" />
         </Link>
       </div>
       {data?.map((d) => (

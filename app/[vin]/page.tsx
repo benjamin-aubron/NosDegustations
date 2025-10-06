@@ -37,7 +37,7 @@ export default async function Page({ params }: { params: Promise<{ vin: string }
             <div className="text-neutral-500 font-medium text-lg">{selectedWine?.domain}</div>
           </div>
         </div>
-        <div className="w-full h-[300px] bg-neutral-200 rounded-2xl flex flex-col justify-center items-center overflow-hidden">
+        <div className="w-full h-[300px] bg-neutral-200 rounded-2xl flex flex-col justify-center items-center overflow-hidden relative">
           <WineImage vinId={vin} alt={`${vin} image`} />
         </div>
       </div>

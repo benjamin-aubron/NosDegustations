@@ -13,7 +13,7 @@ type TestedCardProps = Pick<Data, "id" | "appelation" | "alcohol" | "region" | "
 export default function TestedCard({id, appelation, alcohol, region, year }: TestedCardProps) {
   return (
     <Link href={`/${id}`}>
-      <Card className="my-2 p-4">
+      <Card className="my-2 p-4 rounded-md md:rounded-lg">
         <CardHeader className="p-0">
           <CardTitle>{appelation}</CardTitle>
           <CardDescription>{region}</CardDescription>

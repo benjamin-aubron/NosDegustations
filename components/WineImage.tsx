@@ -26,9 +26,8 @@ export default function WineImage({ vinId, alt }: { vinId: string; alt: string }
     <Image
       src={imageUrl}
       alt={alt}
-      className="w-full h-full rounded-lg"
-      width={300}
-      height={300}
+      className="w-full h-full object-cover rounded-lg"
+      fill
       onError={() => setHasError(true)}
       unoptimized
     />
