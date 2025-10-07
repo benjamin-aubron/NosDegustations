@@ -43,10 +43,10 @@ export default function NextTastingPage() {
 
   return (
     <div>
-      <Link href={`/`} className="flex items-center gap-1 text-lg hover:bg-neutral-200 rounded-lg w-fit pl-2 pr-3 py-2 mb-4"> <ArrowLeft className="w-5 h-5" /> Retour</Link>
-      <h1 className="text-4xl font-medium mb-4 mt-4">Prochaines dégustations</h1>
-      <h2 className="my-2 font-medium text-lg">Ajouter ou modifier une boisson</h2>
-      <Card className="px-4">
+      <Link href={`/`} className="flex items-center gap-1 text-lg hover:bg-primary/20 rounded-lg w-fit pl-2 pr-3 py-2 mb-4"> <ArrowLeft className="w-5 h-5" /> Retour</Link>
+      <h1 className="text-2xl md:text-4xl font-bold text-primary mb-4 mt-4">Prochaines dégustations</h1>
+      <h2 className="my-2 font-medium text-lg">Ajouter ou modifier un vin</h2>
+      <Card className="px-4 rounded-lg">
         <form action={handleSubmit}>
           <div className="flex flex-col md:flex-row gap-4 w-full">
             <input
@@ -55,7 +55,7 @@ export default function NextTastingPage() {
               placeholder="Appelation"
               value={formData.appelation}
               onChange={(e) => setFormData({ ...formData, appelation: e.target.value })}
-              className="w-full border border-black px-2 py-1 rounded-md"
+              className="w-full px-2 py-1 ring-1 focus:ring-2 ring-primary rounded-md outline-none"
             />
             <input
               type="text"
@@ -63,11 +63,11 @@ export default function NextTastingPage() {
               placeholder="Région"
               value={formData.region}
               onChange={(e) => setFormData({ ...formData, region: e.target.value })}
-              className="w-full border border-black px-2 py-1 rounded-md"
+              className="w-full px-2 py-1 ring-1 focus:ring-2 ring-primary rounded-md outline-none"
             />
           </div>
           <div className="flex w-full mt-4">
-            <button type="submit" className="bg-neutral-200 hover:bg-neutral-300 rounded-md px-2 py-1 cursor-pointer">Ajouter ou modifier</button>
+            <button type="submit" className="bg-primary/20 hover:bg-primary rounded-md px-2 py-1 cursor-pointer hover:text-white">Ajouter ou modifier</button>
           </div>
         </form>
       </Card>
@@ -87,4 +87,3 @@ export default function NextTastingPage() {
     </div>
   )
 }
-

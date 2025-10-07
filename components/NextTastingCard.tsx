@@ -24,7 +24,7 @@ export default function NextTastingCard({ id, appelation, region, onClick, onDel
         </div>
       </Card>
       <div onClick={async () => { await deleteNextTasting(id); onDelete?.(); }} className={`${pathname === "/" ? "hidden" : "flex"} flex-col cursor-pointer justify-center items-end text-sm text-neutral-600 bg-red-50 hover:bg-red-200 p-2 rounded-sm group absolute top-1/2 -translate-y-1/2 right-4`}>
-        <Trash2 className="w-6 h-6 text-neutral-500 group-hover:text-red-900" />
+        <Trash2 className="w-6 h-6 text-primary/70 group-hover:text-red-900" />
       </div>
     </div>
   )
