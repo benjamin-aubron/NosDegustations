@@ -5,8 +5,10 @@ import { neonConfig } from '@neondatabase/serverless';
 import ws from 'ws';
 neonConfig.webSocketConstructor = ws;
 
-// To work in edge environments (Cloudflare Workers, Vercel Edge, etc.), enable querying over fetch
-// neonConfig.poolQueryViaFetch = true
+// Enable querying over fetch in production for edge environments
+if (process.env.NODE_ENV === 'production') {
+  neonConfig.poolQueryViaFetch = true;
+}
 
 
 declare global {
