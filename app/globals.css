@@ -124,3 +124,7 @@
 @theme {
   --color-primary: #79282f;
 }
+
+.wine-hero-bg {
+  background-position: center bottom -80px;
+}

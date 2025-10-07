@@ -15,7 +15,7 @@ export default function NextTastingCard({ id, appelation, region, onClick, onDel
 
   return (
     <div className="relative"> 
-      <Card className={`${pathname !== "/" && "cursor-pointer"} not-last:my-2 p-4 rounded-md md:rounded-lg`} onClick={onClick}>
+      <Card className={`${pathname !== "/" && "cursor-pointer"} not-last:my-2 p-2 pl-3 rounded-md md:rounded-lg`} onClick={onClick}>
         <div className="flex justify-between items-center">
           <div className="">
             <div className="text-base font-semibold">{appelation}</div>
