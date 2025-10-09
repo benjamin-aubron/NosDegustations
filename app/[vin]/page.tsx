@@ -1,13 +1,12 @@
-import PieChart from "@/components/PieChart"
-import { Cepage } from "@/utils/types"
-import Comment from "@/components/Comment"
-import { toPascalCase } from "@/lib/utils"
 import Link from "next/link"
-import { ArrowLeft } from "lucide-react"
+import PieChart from "@/components/PieChart"
+import Comment from "@/components/Comment"
+import WineImage from "@/components/WineImage"
+import { toPascalCase } from "@/lib/utils"
+import { Cepage } from "@/utils/types"
 import fetchSelected from "@/app/ajouter-degustations/fetchSelected"
 import NotFound from "@/app/not-found"
-import { PencilLine } from "lucide-react"
-import WineImage from "@/components/WineImage"
+import { PencilLine, ArrowLeft, Grape, Calendar, Wine, Clock} from "lucide-react"
 
 export default async function Page({ params }: { params: Promise<{ vin: string }> }) {
   const { vin } = await params
@@ -63,7 +62,7 @@ export default async function Page({ params }: { params: Promise<{ vin: string }
           <WineImage vinId={vin} alt={`${vin} image`} />
         </div>
       </div>
-      <div className="bg-neutral-200 rounded-2xl p-4">
+      <div className="bg-neutral-200 rounded-2xl p-4 space-y-2">
         <div>Dégusté le : {selectedWine?.tastingDate ? selectedWine?.tastingDate?.toLocaleDateString('fr-FR', {
           weekday: 'short',
           year: 'numeric',
@@ -72,9 +71,9 @@ export default async function Page({ params }: { params: Promise<{ vin: string }
         }) : "Non renseigné"}
         </div>
         <div className="flex justify-between">
-          <p>Type : {toPascalCase(selectedWine?.type ?? "")}</p>
-          <p>Année : {selectedWine?.year ? selectedWine?.year : "Non renseigné"}</p>
-          <p>Alcool : {selectedWine?.alcohol ? `${selectedWine?.alcohol}°` : "Non renseigné"}</p>
+          <p className="flex items-center"><Grape className="w-4 h-4 mr-[6px]" />{toPascalCase(selectedWine?.type ?? "")}</p>
+          <p className="flex items-center"><Calendar className="w-4 h-4 mr-[6px]" />{selectedWine?.year ? selectedWine?.year : "Non renseigné"}</p>
+          <p className="flex items-center"><Wine className="w-4 h-4 mr-[6px]" />{selectedWine?.alcohol ? `${selectedWine?.alcohol}°` : "Non renseigné"}</p>
         </div>
       </div>
       <div className="bg-neutral-200 rounded-2xl p-4">
