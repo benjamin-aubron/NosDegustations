@@ -102,7 +102,7 @@ export default function FileUploader({
             )}
           </div>
           <div className="relative inline-block">
-            <Button type="button" onClick={openFileDialog} aria-haspopup="dialog">
+            <Button type="button" variant={"outline"} onClick={openFileDialog} aria-haspopup="dialog">
               {fileName ? "Changer l'image" : "Charger une image"}
             </Button>
             <input

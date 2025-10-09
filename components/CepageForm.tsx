@@ -21,7 +21,7 @@ export default function CepageForm({ form, cepageLength }: { form: UseFormReturn
   const [cepageNumber, setCepageNumber] = useState(cepageLength)
 
   return (
-    <div className="bg-amber-50 p-4 rounded-lg space-y-4">
+    <div className="bg-primary/10 p-4 rounded-lg space-y-4">
       <div className="grid grid-cols-2 gap-4">
         <FormField
           control={form.control}
@@ -134,7 +134,7 @@ export default function CepageForm({ form, cepageLength }: { form: UseFormReturn
           )}
         />
       </div>
-      <Button type="button" onClick={() => setCepageNumber(cepageNumber + 1)} className="mt-2 cursor-pointer bg-neutral-400 hover:bg-neutral-600" disabled={cepageNumber >= 4}>Ajouter un cépage</Button>
+      <Button type="button" variant={"outline"} onClick={() => setCepageNumber(cepageNumber + 1)} className="mt-2 cursor-pointer" disabled={cepageNumber >= 4}>Ajouter un cépage</Button>
     </div>
   )
 }
