@@ -19,32 +19,28 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover"
+import { cepages } from "@/db/cepage"
 
-const frameworks = [
-  {
-    value: "Merlot",
-  },
-  {
-    value: "Malbec",
-  },
-  {
-    value: "Gamay",
-  },
-  {
-    value: "Syrah",
-  },
-  {
-    value: "Grenache",
-  },
-]
+const allCepages  = cepages.map((cepage) => {
+  return {
+    value: cepage,
+  }
+})
 
 
-export default function Combobox({ value, onValueChange, placeholder = "Select cépage..." }: {
+export { allCepages }
+
+export default function Combobox({ value, onValueChange, placeholder = "Selectionner un cépage", excludedValues = [] }: {
   value?: string;
   onValueChange?: (value: string) => void;
   placeholder?: string;
+  excludedValues?: string[];
 }) {
   const [open, setOpen] = useState(false)
+
+  const availableCepages = allCepages.filter(
+    (cepage) => !excludedValues.includes(cepage.value) || cepage.value === value
+  )
 
   return (
     <Popover open={open} onOpenChange={setOpen}>
@@ -56,7 +52,7 @@ export default function Combobox({ value, onValueChange, placeholder = "Select c
           className="w-full justify-between"
         >
           {value
-            ? frameworks.find((framework) => framework.value === value)?.value
+            ? allCepages.find((cepage) => cepage.value === value)?.value
             : placeholder}
           <ChevronsUpDownIcon className="ml-2 h-4 w-4 shrink-0 opacity-50" />
         </Button>
@@ -67,10 +63,10 @@ export default function Combobox({ value, onValueChange, placeholder = "Select c
           <CommandList>
             <CommandEmpty>No cépage found.</CommandEmpty>
             <CommandGroup>
-              {frameworks.map((framework) => (
+              {availableCepages.map((cepage) => (
                 <CommandItem
-                  key={framework.value}
-                  value={framework.value}
+                  key={cepage.value}
+                  value={cepage.value}
                   onSelect={(currentValue) => {
                     const newValue = currentValue === value ? "" : currentValue
                     onValueChange?.(newValue)
@@ -80,10 +76,10 @@ export default function Combobox({ value, onValueChange, placeholder = "Select c
                   <CheckIcon
                     className={cn(
                       "mr-2 h-4 w-4",
-                      value === framework.value ? "opacity-100" : "opacity-0"
+                      value === cepage.value ? "opacity-100" : "opacity-0"
                     )}
                   />
-                  {framework.value}
+                  {cepage.value}
                 </CommandItem>
               ))}
             </CommandGroup>

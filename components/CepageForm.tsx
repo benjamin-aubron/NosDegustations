@@ -20,6 +20,13 @@ import { Button } from "@/components/ui/button"
 export default function CepageForm({ form, cepageLength }: { form: UseFormReturn<z.infer<typeof formSchema>>, cepageLength: number }) {
   const [cepageNumber, setCepageNumber] = useState(cepageLength)
 
+  const selectedCepages = [
+    form.watch("cepage1"),
+    form.watch("cepage2"),
+    form.watch("cepage3"),
+    form.watch("cepage4")
+  ].filter(Boolean) as string[]
+
   return (
     <div className="bg-primary/10 p-4 rounded-lg space-y-4">
       <div className="grid grid-cols-2 gap-4">
@@ -30,7 +37,7 @@ export default function CepageForm({ form, cepageLength }: { form: UseFormReturn
             <FormItem>
               <FormLabel>Cépage</FormLabel>
               <FormControl>
-                <Combobox value={field.value} onValueChange={field.onChange} />
+                <Combobox value={field.value} onValueChange={field.onChange} excludedValues={selectedCepages} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -58,7 +65,7 @@ export default function CepageForm({ form, cepageLength }: { form: UseFormReturn
             <FormItem>
               <FormLabel>Cépage</FormLabel>
               <FormControl>
-                <Combobox value={field.value} onValueChange={field.onChange} />
+                <Combobox value={field.value} onValueChange={field.onChange} excludedValues={selectedCepages} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -86,7 +93,7 @@ export default function CepageForm({ form, cepageLength }: { form: UseFormReturn
             <FormItem>
               <FormLabel>Cépage</FormLabel>
               <FormControl>
-                <Combobox value={field.value} onValueChange={field.onChange} />
+                <Combobox value={field.value} onValueChange={field.onChange} excludedValues={selectedCepages} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -114,7 +121,7 @@ export default function CepageForm({ form, cepageLength }: { form: UseFormReturn
             <FormItem>
               <FormLabel>Cépage</FormLabel>
               <FormControl>
-                <Combobox value={field.value} onValueChange={field.onChange} />
+                <Combobox value={field.value} onValueChange={field.onChange} excludedValues={selectedCepages} />
               </FormControl>
               <FormMessage />
             </FormItem>
