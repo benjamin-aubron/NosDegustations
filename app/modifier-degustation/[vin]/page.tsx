@@ -61,7 +61,7 @@ export default async function Page({ params }: { params: Promise<{ vin: string }
         <Link href={`/${vin}`} className="flex items-center gap-1 text-lg hover:bg-neutral-200 rounded-lg pl-2 pr-3 py-2"> <ArrowLeft className="w-5 h-5" /> Retour</Link>
         <DeleteButton vin={selectedWine.id} />
       </div>
-      <h1 className="text-4xl font-medium my-8">Modifier {selectedWine?.appelation}</h1>
+      <h1 className="text-4xl my-8 text-primary font-bold">Modifier {selectedWine?.appelation}</h1>
       <TestedForm DefaultValues={formattedSelectedWine} />
     </div>
   )
