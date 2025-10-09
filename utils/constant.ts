@@ -1,2 +1,2 @@
-export const WHITE_COLORS = ["#d8ac0f", "#eec944", "#ffda41", "#e9dc42", "#e2dc86"]
-export const RED_COLORS = ["#640203", "#840108", "#df182c", "#eb4c58", "#ff5252"]
+export const WHITE_COLORS = ["#CC9605", "#FFD60C", "#FFED00", "#FFF056", "#FFF590"]
+export const RED_COLORS = ["#93131C", "#BD0F1E", "#E42127", "#EB6C59", "#F18970"]

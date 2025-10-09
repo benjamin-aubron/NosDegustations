@@ -21,7 +21,29 @@ export default async function Page({ params }: { params: Promise<{ vin: string }
 
   return (
     <div className="space-y-4">
-      <div className="grid grid-cols-2 gap-4">
+      {/* Mobile */}
+      <div className="bloc md:hidden relative">
+        <div className="flex justify-between pb-1">
+          <Link href={`/`} className="flex items-center gap-1 text-lg hover:bg-neutral-200 rounded-xl w-fit pl-2 pr-3 py-2"><ArrowLeft className="w-5 h-5" /> Retour</Link>
+          <Link href={`/modifier-degustation/${selectedWine?.id}`} className="cursor-pointer hover:bg-neutral-200 ml-4 mt-1 px-2 py-1 rounded mr-2">
+            <PencilLine className="w-6 h-8 text-neutral-500" />
+          </Link>
+        </div>
+        <div className="w-full h-[300px] bg-neutral-200 rounded-2xl flex flex-col justify-center items-center overflow-hidden relative">
+          <WineImage vinId={vin} alt={`${vin} image`} />
+        </div>
+        <div className="absolute bottom-2 left-2 bg-neutral-300/90 rounded-lg py-1 px-2">
+          <div>
+            <h1 className="text-2xl font-medium">{selectedWine?.appelation}</h1>
+          </div>
+          <div className="">
+            <div className="text-neutral-800 font-medium">{selectedWine?.region}</div>
+            <div className="text-neutral-500 font-medium">{selectedWine?.domain}</div>
+          </div>
+        </div>
+      </div>
+      {/* Desktop */}
+      <div className="hidden md:grid grid-cols-2 gap-4">
         <div className="p-4">
           <div className="flex justify-between mb-8">
             <Link href={`/`} className="flex items-center gap-1 text-lg hover:bg-neutral-200 rounded-xl w-fit pl-2 pr-3 py-2"><ArrowLeft className="w-5 h-5" /> Retour</Link>
