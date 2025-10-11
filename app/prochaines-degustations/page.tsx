@@ -10,7 +10,8 @@ import createTasting from "./createTasting"
 
 type Tasting = Pick<Data, "id" | "appelation" | "region">
 
-export default function NextTastingPage() {
+export default  function NextTastingPage() {
+
   const [data, setData] = useState<Tasting[]>([])
   const [formData, setFormData] = useState<Tasting>({
     appelation: "",
