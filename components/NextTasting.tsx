@@ -1,7 +1,7 @@
 import ToBeTestedCard from "./NextTastingCard"
 import { Plus } from "lucide-react"
 import Link from "next/link"
-import fetchTasting from "@/app/prochaines-degustations/fetchTasting"
+import fetchTasting from "@/app/(modif)/prochaines-degustations/fetchTasting"
 
 
 export default async function NextTasting() {

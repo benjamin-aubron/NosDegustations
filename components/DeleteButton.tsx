@@ -1,7 +1,7 @@
 "use client"
 
 import { Trash2 } from "lucide-react"
-import deleteWine from "@/app/prochaines-degustations/deleteWine"
+import deleteWine from "@/app/(modif)/prochaines-degustations/deleteWine"
 import { useRouter } from "next/navigation"
 
 export default function DeleteButton({ vin }: { vin: string }) {

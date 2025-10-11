@@ -1,7 +1,7 @@
 import TestedCard from "@/components/TestedCard"
 import { Plus } from "lucide-react"
 import Link from "next/link"
-import fetchTested from "@/app/ajouter-degustations/fetchTested"
+import fetchTested from "@/app/(modif)/ajouter-degustations/fetchTested"
 
 export default async function Tested() {
 
