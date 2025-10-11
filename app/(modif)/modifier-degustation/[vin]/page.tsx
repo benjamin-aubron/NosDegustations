@@ -1,5 +1,5 @@
 import TestedForm from "@/components/TestedForm"
-import fetchSelected from "@/app/ajouter-degustations/fetchSelected"
+import fetchSelected from "@/app/(modif)/ajouter-degustations/fetchSelected"
 import NotFound from "@/app/not-found"
 import Link from "next/link"
 import { ArrowLeft } from "lucide-react"

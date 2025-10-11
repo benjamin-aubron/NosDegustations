@@ -5,7 +5,7 @@ import {
 import { Data } from "@/utils/types";
 import { Trash2 } from "lucide-react";
 import { usePathname } from "next/navigation";
-import deleteNextTasting from "@/app/prochaines-degustations/deleteWine";
+import deleteNextTasting from "@/app/(modif)/prochaines-degustations/deleteWine";
 
 type NextTastingCardProps = Pick<Data, "id" | "appelation" | "region">
 

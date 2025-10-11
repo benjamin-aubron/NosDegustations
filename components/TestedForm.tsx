@@ -4,7 +4,7 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
 import { useRouter } from "next/navigation"
-import createTested from "@/app/ajouter-degustations/createTested"
+import createTested from "@/app/(modif)/ajouter-degustations/createTested"
 import CepageForm from "./CepageForm"
 import { Button } from "@/components/ui/button"
 import {
