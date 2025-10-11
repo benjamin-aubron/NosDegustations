@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation"
 import { useFileUpload } from "@/hooks/use-file-upload"
 import { Button } from "@/components/ui/button"
 import { toSnakeCase } from "@/lib/utils"
+import Image from "next/image"
 
 export default function FileUploader({
   appelation,
@@ -88,7 +89,7 @@ export default function FileUploader({
             }
           >
             {previewUrl ? (
-              <img
+              <Image
                 className="size-full object-cover"
                 src={previewUrl}
                 alt="Preview of uploaded image"

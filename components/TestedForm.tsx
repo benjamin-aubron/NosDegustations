@@ -50,8 +50,6 @@ export const formSchema = z.object({
 
 export default function TestedForm({ DefaultValues }: { DefaultValues?: z.infer<typeof formSchema> }) {
 
-  const inputFileRef = useRef<HTMLInputElement>(null);
-  const [blob, setBlob] = useState<PutBlobResult | null>(null);
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const router = useRouter()
 

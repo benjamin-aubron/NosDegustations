@@ -6,7 +6,7 @@ import { toPascalCase } from "@/lib/utils"
 import { Cepage } from "@/utils/types"
 import fetchSelected from "@/app/(modif)/ajouter-degustations/fetchSelected"
 import NotFound from "@/app/not-found"
-import { PencilLine, ArrowLeft, Grape, Calendar, Wine, Clock} from "lucide-react"
+import { PencilLine, ArrowLeft, Grape, Calendar, Wine} from "lucide-react"
 
 export default async function Page({ params }: { params: Promise<{ vin: string }> }) {
   const { vin } = await params
