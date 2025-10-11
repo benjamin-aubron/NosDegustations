@@ -21,7 +21,7 @@ export function SignInForm() {
 
     const { data, error } = await authClient.signIn.email(
       {
-        email,
+        email:"jeanbohn@email.com",
         password,
         callbackURL: "/"
       },
@@ -42,7 +42,7 @@ export function SignInForm() {
 
   return (
     <form onSubmit={handleSubmit} className="space-y-4 w-full max-w-md">
-      <div className="space-y-2">
+      <div className="space-y-2 hidden">
         <Label htmlFor="email">Email</Label>
         <Input
           id="email"
@@ -50,16 +50,15 @@ export function SignInForm() {
           placeholder="votre@email.com"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          required
+          // required
         />
       </div>
 
       <div className="space-y-2">
-        <Label htmlFor="password">Mot de passe</Label>
         <Input
           id="password"
           type="password"
-          placeholder="Votre mot de passe"
+          placeholder="Entrez le mot de passe"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           required
@@ -75,13 +74,6 @@ export function SignInForm() {
       <Button type="submit" className="w-full" disabled={isLoading}>
         {isLoading ? "Connexion..." : "Se connecter"}
       </Button>
-
-      <p className="text-sm text-center text-gray-600">
-        Pas encore de compte ?{" "}
-        <a href="/auth/signup" className="text-blue-600 hover:underline">
-          S'inscrire
-        </a>
-      </p>
     </form>
   )
 }

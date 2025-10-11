@@ -7,7 +7,7 @@ export default function SignInPage() {
         <div className="text-center">
           <h1 className="text-3xl font-bold">Connexion</h1>
           <p className="text-gray-600 mt-2">
-            Connectez-vous pour accéder à vos dégustations
+            Connectez-vous pour modifier les dégustations
           </p>
         </div>
         <SignInForm />
