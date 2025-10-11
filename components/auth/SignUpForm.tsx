@@ -6,6 +6,7 @@ import { authClient } from "@/lib/auth-client"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
+import Link from "next/link"
 
 export function SignUpForm() {
   const router = useRouter()
@@ -93,9 +94,9 @@ export function SignUpForm() {
 
       <p className="text-sm text-center text-gray-600">
         Déjà un compte ?{" "}
-        <a href="/auth/signin" className="text-blue-600 hover:underline">
+        <Link href="/auth/signin" className="text-blue-600 hover:underline">
           Se connecter
-        </a>
+        </Link>
       </p>
     </form>
   )
