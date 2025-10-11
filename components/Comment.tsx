@@ -9,8 +9,8 @@ export default function Comment({name, content, note}: {name: string, content: s
       <div className="flex items-center justify-between">
         <div className="flex items-center space-x-3">
           <Avatar>
-            <AvatarImage src="https://github.com/shadcn.png" />
-            <AvatarFallback>CN</AvatarFallback>
+            <AvatarImage src={name === "clem" ? "/nasique.png" : "/borat.png"} />
+            <AvatarFallback>{name === "clem" ? "CV" : "BA"}</AvatarFallback>
           </Avatar>
           <h2 className="text-xl">{name === "clem" ? "Clemence" : "Benji"}</h2>
         </div>
