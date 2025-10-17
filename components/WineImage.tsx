@@ -16,7 +16,7 @@ export default function WineImage({ vinId, alt }: { vinId: string; alt: string }
 
   if (hasError) {
     return (
-      <div className="w-full h-full flex items-center justify-center">
+      <div className="w-full h-full bg-neutral-200 flex items-center justify-center">
         <ImageIcon className="w-16 h-16 text-neutral-400" />
       </div>
     )

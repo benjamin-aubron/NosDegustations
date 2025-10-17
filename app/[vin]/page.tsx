@@ -28,7 +28,7 @@ export default async function Page({ params }: { params: Promise<{ vin: string }
             <PencilLine className="w-6 h-8 text-neutral-500" />
           </Link>
         </div>
-        <div className="w-full h-[300px] rounded-2xl flex flex-col justify-center items-center overflow-hidden relative">
+        <div className="w-full h-[300px] bg-neutral-200 rounded-2xl flex flex-col justify-center items-center overflow-hidden relative">
           <WineImage vinId={vin} alt={`${vin} image`} />
         </div>
         <div className="absolute bottom-2 left-2 backdrop-blur bg-neutral-300/60 rounded-lg py-1 px-2 flex flex-col gap-2">
