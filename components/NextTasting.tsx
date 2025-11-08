@@ -32,9 +32,9 @@ export default async function NextTasting() {
           <div className="font-semibold pb-4">{region}</div>
           <ul>
             {wines.map((wine) => (
-              <div className="flex items-center space-x-2">
+              <div key={wine.id} className="flex items-center space-x-2">
                 <div className="w-[6px] h-[6px] bg-neutral-700 rounded-full"></div>
-                <li key={wine.id}>{wine.appelation}</li>
+                <li>{wine.appelation}</li>
               </div>
             ))}
           </ul>
