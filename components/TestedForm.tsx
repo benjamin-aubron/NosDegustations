@@ -16,7 +16,6 @@ import {
   FormMessage,
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
-import { PutBlobResult } from '@vercel/blob';
 import { upload } from '@vercel/blob/client';
 import { useState, useRef } from 'react';
 import { toSnakeCase } from "@/lib/utils"
@@ -63,13 +62,13 @@ export default function TestedForm({ DefaultValues }: { DefaultValues?: z.infer<
       year: DefaultValues?.year || "",
       alcohol: DefaultValues?.alcohol || "",
       cepage1: DefaultValues?.cepage1 || "",
-      pourcentage1: DefaultValues?.pourcentage1 || "",
+      pourcentage1: DefaultValues?.pourcentage1 ?? "",
       cepage2: DefaultValues?.cepage2 || "",
-      pourcentage2: DefaultValues?.pourcentage2 || "",
+      pourcentage2: DefaultValues?.pourcentage2 ?? "",
       cepage3: DefaultValues?.cepage3 || "",
-      pourcentage3: DefaultValues?.pourcentage3 || "",
+      pourcentage3: DefaultValues?.pourcentage3 ?? "",
       cepage4: DefaultValues?.cepage4 || "",
-      pourcentage4: DefaultValues?.pourcentage4 || "",
+      pourcentage4: DefaultValues?.pourcentage4 ?? "",
       noteClem: DefaultValues?.noteClem || "",
       noteBenji: DefaultValues?.noteBenji || "",
       commentClem: DefaultValues?.commentClem || "",
