@@ -1,6 +1,7 @@
 "use server"
 import prisma from "@/lib/prisma"
 import { toSnakeCase } from "@/lib/utils"
+import { revalidatePath } from "next/cache"
 
 type FormValues = {
   appelation: string
@@ -86,4 +87,5 @@ export default async function createTested(data: FormValues) {
       commentBenji,
     },
   })
+  revalidatePath("/")
 }
