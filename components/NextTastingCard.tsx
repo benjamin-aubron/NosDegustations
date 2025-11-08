@@ -14,7 +14,7 @@ export default function NextTastingCard({ id, appelation, region, onClick, onDel
   const pathname = usePathname()
 
   return (
-    <div className="relative"> 
+    <div className="relative">
       <Card className={`${pathname !== "/" && "cursor-pointer"} not-last:my-2 p-2 pl-3 rounded-md md:rounded-lg`} onClick={onClick}>
         <div className="flex justify-between items-center">
           <div className="">
