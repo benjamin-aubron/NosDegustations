@@ -58,11 +58,11 @@ export default async function Page({ params }: { params: Promise<{ vin: string }
             <div className="text-neutral-500 font-medium text-lg">{selectedWine?.domain}</div>
           </div>
         </div>
-        <div className="w-full h-[300px] bg-neutral-200 rounded-2xl flex flex-col justify-center items-center overflow-hidden relative">
+        <div className="w-full h-[300px] bg-neutral-200 rounded-2xl flex flex-col justify-center items-center overflow-hidden relative shadow">
           <WineImage vinId={vin} alt={`${vin} image`} />
         </div>
       </div>
-      <div className="bg-neutral-200 rounded-2xl p-4 space-y-2">
+      <div className="bg-neutral-200 rounded-2xl p-4 space-y-2 shadow">
         <div>Dégusté le : {selectedWine?.tastingDate ? selectedWine?.tastingDate?.toLocaleDateString('fr-FR', {
           weekday: 'short',
           year: 'numeric',
@@ -76,7 +76,7 @@ export default async function Page({ params }: { params: Promise<{ vin: string }
           <p className="flex items-center"><Wine className="w-4 h-4 mr-[6px]" />{selectedWine?.alcohol ? `${selectedWine?.alcohol}°` : "Non renseigné"}</p>
         </div>
       </div>
-      <div className="bg-neutral-200 rounded-2xl p-4">
+      <div className="bg-neutral-200 rounded-2xl p-4 shadow">
         <div className="grid grid-cols-2 gap-4">
           <div className="">
             <h2 className="text-xl">Cépages</h2>

@@ -5,7 +5,7 @@ import Score from "@/components/Score"
 export default function Comment({name, content, note}: {name: string, content: string, note: number | undefined}) {
   if (note === undefined && content === "") return null
   return (
-    <div className="bg-neutral-200 rounded-2xl p-4">
+    <div className="bg-neutral-200 rounded-2xl p-4 shadow">
       <div className="flex items-center justify-between">
         <div className="flex items-center space-x-3">
           <Avatar>
